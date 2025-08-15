@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hijama Admin Panel</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f5f7;
+      color: #111;
+    }
+
+    header {
+      background: #111;
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+    }
+
+    nav button {
+      margin-left: 10px;
+      padding: 10px 15px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      background: #fff;
+      color: #111;
+      border-radius: 4px;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    section {
+      display: none;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 12px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .stats-grid {
+      display: flex;
+      gap: 20px;
+    }
+
+    .stat-box {
+      background: #fff;
+      flex: 1;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+    }
+
+    .stat-box h3 {
+      font-size: 1.5rem;
+      color: #333;
+    }
+
+    .stat-box p {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.8rem;
+      color: #777;
+    }
+
+    @media (max-width: 600px) {
+      .stats-grid {
+        flex-direction: column;
+      }
+
+      nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Hijama Admin Dashboard</h1>
+    <nav>
+      <button onclick="showSection('dashboard')">Dashboard</button>
+      <button onclick="showSection('analytics')">Analytics</button>
+      <button onclick="logout()">Logout</button>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="active">
+      <div class="card">
+        <h2>Appointments</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Client</th>
+              <th>Date</th>
+              <th>Service</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="appointmentsTable">
+            <!-- JS fills data -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Analytics Section -->
+    <section id="analytics">
+      <div class="card">
+        <h2>Analytics Overview</h2>
+        <div class="stats-grid">
+          <div class="stat-box">
+            <h3 id="totalAppointments">0</h3>
+            <p>Total Appointments</p>
+          </div>
+          <div class="stat-box">
+            <h3 id="confirmedAppointments">0</h3>
+            <p>Confirmed</p>
+          </div>
+          <div class="stat-box">
+            <h3 id="pendingAppointments">0</h3>
+            <p>Pending</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Hijama Clinic Admin Panel
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    const mockAppointments = [
+      { name: "Ali Khan", date: "2025-08-17", service: "Wet Cupping", status: "Confirmed" },
+      { name: "Sara Patel", date: "2025-08-18", service: "Dry Cupping", status: "Pending" },
+      { name: "Ahmed Yusuf", date: "2025-08-19", service: "Massage Therapy", status: "Confirmed" },
+      { name: "Fatima Noor", date: "2025-08-20", service: "Hijama", status: "Pending" }
+    ];
+
+    function populateAppointments() {
+      const table = document.getElementById("appointmentsTable");
+      table.innerHTML = "";
+      mockAppointments.forEach(appointment => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${appointment.name}</td>
+          <td>${appointment.date}</td>
+          <td>${appointment.service}</td>
+          <td>${appointment.status}</td>
+        `;
+        table.appendChild(row);
+      });
+    }
+
+    function showAnalytics() {
+      const total = mockAppointments.length;
+      const confirmed = mockAppointments.filter(a => a.status === "Confirmed").length;
+      const pending = mockAppointments.filter(a => a.status === "Pending").length;
+
+      document.getElementById("totalAppointments").innerText = total;
+      document.getElementById("confirmedAppointments").innerText = confirmed;
+      document.getElementById("pendingAppointments").innerText = pending;
+    }
+
+    function showSection(id) {
+      document.querySelectorAll("section").forEach(section => {
+        section.classList.remove("active");
+      });
+      document.getElementById(id).classList.add("active");
+
+      if (id === "dashboard") populateAppointments();
+      if (id === "analytics") showAnalytics();
+    }
+
+    function logout() {
+      alert("Logging out...");
+      // Redirect or clear session if implemented
+    }
+
+    // Initialize
+    window.onload = () => {
+      populateAppointments();
+    };
+  </script>
+
+</body>
+</html>
