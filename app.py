@@ -9,7 +9,6 @@ if __name__ == "__main__":
     app.run(debug=1)
 
 
-
 if __name__ == '__main__':
     # Use environment variables for configuration
     port = int(os.environ.get('PORT', 5000))

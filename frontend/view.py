@@ -4,7 +4,6 @@ from datetime import datetime
 
 views = Blueprint("views", __name__)
 
-
 # Sample data for your app
 bookings = []
 analytics_data = {
