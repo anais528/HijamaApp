@@ -3,11 +3,14 @@ This module contains the main application for the website.
 """
 
 from frontend import create_app 
+
 app = create_app()
 
 if __name__ == "__main__":
     app.run(debug=1)
 
+
+"""
 
 if __name__ == '__main__':
     # Use environment variables for configuration
@@ -22,3 +25,5 @@ if __name__ == '__main__':
     print(f"🔧 API Health: http://localhost:{port}/api/health")
     
     app.run(host='0.0.0.0', port=port, debug=debug)
+
+"""

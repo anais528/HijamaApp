@@ -1,4 +1,4 @@
-from flask import render_template, jsonify, request, send_from_directory
+from flask import Blueprint, render_template, jsonify, request, send_from_directory
 import os
 from datetime import datetime
 
@@ -11,6 +11,11 @@ analytics_data = {
     'monthly_revenue': 0,
     'popular_services': []
 }
+
+
+@views.route('/landingpage')
+def landingpage():
+    return render_template('batoul.html')
 
 @views.route('/')
 def home():
@@ -247,7 +252,7 @@ def serve_static(filename):
     """Serve static files"""
     return send_from_directory('.', filename)
 
-@app.errorhandler(404)
+@views.errorhandler(404)
 def not_found(error):
     """Handle 404 errors"""
     return """
@@ -255,13 +260,13 @@ def not_found(error):
     <p>The page you're looking for doesn't exist.</p>
     <nav>
         <a href="/">Home</a> |
-        <a href="/booking">Book Appointment</a> |
+        <a href="/booking">Book viewsointment</a> |
         <a href="/analytics">Analytics</a> |
         <a href="/contact">Contact</a>
     </nav>
     """, 404
 
-@app.errorhandler(500)
+@views.errorhandler(500)
 def internal_error(error):
     """Handle 500 errors"""
     return jsonify({'error': 'Internal server error'}), 500
