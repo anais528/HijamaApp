@@ -14,36 +14,38 @@
   <style>
         /* Reset */
         * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #F9F9FD;
-      color: #333;
-    }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #F9F9FD;
+            color: #333;
+        }
 
-    /* Container grid */
-    .container {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr); /* 12 column grid */
-      grid-auto-rows: minmax(100px, auto);
-      gap: 0px;
-      max-width: 100%;
-      margin: 0 auto;
-      padding: 20px;
-    }
 
-    /* Generic section styling */
-    .section {
-        border: 2px solid #d00; /* red grid outline */
-      padding: 20px;
-      text-align: center;
-    }
+        /* Container grid */
+        .container {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr); /* 12 column grid */
+            grid-auto-rows: minmax(100px, auto);
+            gap: 0px;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-    .header {
+        /* Generic section styling */
+        .section {
+            border: 2px solid #d00; /* red grid outline */
+            padding: 20px;
+            text-align: center;
+        }
+
+    /*----------------------  HEADER SECTION  ----------------------------*/
+        .header {
         display: flex;
         justify-content: space-between; /* spread out left, middle, right */
         align-items: center;
@@ -56,7 +58,6 @@
         margin-top: -30px;
         }
 
-        /* Logo styling */
         .logo {
             display: flex;
             align-items: center;
@@ -68,7 +69,6 @@
             padding-left: 0px;
         }
 
-        /* Middle services */
         .services {
             display: flex;
             align-items: center;
@@ -86,7 +86,6 @@
             height: 40px;
         }
 
-        /* Navigation links */
         .nav {
             display: flex;
             align-items: center;
@@ -114,10 +113,105 @@
             font-size: 30px;
         }
 
+    /*--------------------------------------------------*/
 
+    /*----------------------  INTRO SECTION  ----------------------------*/
+   
     .intro {
       grid-column: 1 / 13;
+
+      display: flex; 
+      width: 100%;
+      height: 600px;
+      gap: 0px;
+      
     }
+
+    .timeline {
+        display: flex;
+        align-items: flex-start;   /* align top */
+        gap: 17px;                 /* space between line and text */
+        margin: 50px;
+        position: relative;
+        margin-left: 40px;
+        margin-top: 280px;
+        }
+
+        /* Left column: vertical line + circle */
+        .line_circle {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        }
+
+        .line {
+        width: 2px;
+        height: 60px;
+        background-color: black;
+        }
+
+        .circle {
+            width: 10px;
+            height: 10px;
+            border: 1px solid black;
+            border-radius: 50%;
+            margin-top: 7px;
+        }
+
+        /* Right column: menu items */
+        .contents {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: flex-start;
+            margin-top: 22.8px;
+        }
+
+        .sidelines {
+        font-size: 10px;
+        font-weight: 500;
+        color: black;
+        }
+
+        /* Inactive (greyed out) */
+        .sidelines.inactive {
+        color: grey;
+        }
+
+
+        h1 {
+            font-size: 68px;
+            font-weight: 300;
+            color: #000;
+
+        }
+
+        .headline {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            padding-top: 30px;
+            padding-left: 40px;
+        }
+
+        .box {
+            width:500px;
+            text-align: left;
+        }
+
+        .buttons {
+            
+            display: flex;
+            flex-direction: row;
+            gap: 1045px;
+        }
+
+        h3 {
+            
+        }
+        
+    /*--------------------------------------------------*/
 
     .highlight {
       grid-column: 1 / 13;
@@ -168,7 +262,43 @@
       </header>
 
 
-    <div class="section intro">Hero Section (Title, Subtitle, CTA)</div>
+    <div class="section intro">
+
+        <div class="timeline">
+            <div class="line_circle">
+              <div class="line"></div>
+              <div class="circle"></div>
+            </div>
+          
+            <div class="contents">
+              <span class="sidelines">Intro</span>
+              <span class="sidelines">Expertise</span>
+              <span class="sidelines">Technology</span>
+              <span class="sidelines inactive">Clients</span>
+              <span class="sidelines inactive">Contact Us</span>
+            </div>
+          </div>
+          
+
+        <div class="headline">
+            <div class="headline box">
+                <h1>
+                    Hijama & Sports Therapy for <span style="font-weight: 600;">Better Health</span>
+                </h1>
+            </div>
+            <div class="headline tagline">
+                <h3>
+                    Specialised treatments for pain relief, muscle 
+                    recovery, and total body wellness in Coventry
+                </h3>
+            </div>
+            <div class="headline buttons">
+                <button class="button appointment">Make Appointment</button>
+                <button class="button explore">Explore Services</button>
+            </div>
+        </div>
+
+    </div>
     <div class="section highlight">Tagline / Key Words</div>
     
     <div class="section cards"> Services
