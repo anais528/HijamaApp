@@ -56,6 +56,8 @@
 
         border: none;
         margin-top: -30px;
+        padding-top: 10px;
+        padding-bottom: 10px;
         }
 
         .logo {
@@ -122,8 +124,10 @@
 
       display: flex; 
       width: 100%;
-      height: 600px;
+      height: 900px;
       gap: 0px;
+      padding-bottom: 0px;
+
       
     }
 
@@ -196,20 +200,110 @@
         }
 
         .box {
-            width:500px;
+            width: 500px;
             text-align: left;
+            padding-bottom: 15px;
         }
 
         .buttons {
             
             display: flex;
             flex-direction: row;
-            gap: 1045px;
+            gap: 840px;
+        }
+
+        .tagline {
+            text-align: left;
+            margin-bottom: 40px;
         }
 
         h3 {
-            
+            font-weight: 350;
         }
+
+        .appointment {
+            padding: 12px 20px;
+            border-radius: 80px;
+            width: 190px;
+            border: 1px solid black;
+            background-color: transparent;
+            font-size: 13px;
+        }
+
+        .appointment:hover {
+            background: linear-gradient(135deg, #000000, #000000);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(121, 127, 134, 0.35);
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;   
+
+        }
+
+        .appointment:active {
+            transform: translateY(0);
+            box-shadow: 0 3px 8px rgba(123, 125, 127, 0.2);
+            color: white;
+        }
+
+        .explore {
+            padding: 12px 20px;
+            border-radius: 80px;
+            width: 170px;
+            border: 1px solid black;
+            background-color: black;
+            font-size: 13px;
+            color: white;
+        }
+
+
+        .info {
+            border: 1px solid #c0c0c061;
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+            margin-top: 60px;
+            height: 150px;
+            width: 1470px;
+            margin-left: -140px;
+
+            background: #efefef71;  /* semi-transparent background */
+            backdrop-filter: blur(20px);   /* background blur */
+            -webkit-backdrop-filter: blur(10px); /* Safari support */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); /* drop shadow */
+
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .hijama-image {
+            width: 100px;
+            height: 20px;
+        }
+
+        .hijama-image img {
+            width: 70px;
+            margin-left: 10px;
+        }
+
+        .headline.info .tagline {
+            width: 750px;
+            height: 20px;
+            margin-left: 25px;
+            font-weight: 500;
+            font-size: 27px;
+            margin-top: 5px;
+        }
+
+        .information {
+            width: 450px;
+            height: 20px;
+            font-size: small;
+            font-weight: 400;
+            text-align: left;
+        }
+
         
     /*--------------------------------------------------*/
 
@@ -288,13 +382,25 @@
             </div>
             <div class="headline tagline">
                 <h3>
-                    Specialised treatments for pain relief, muscle 
+                    Specialised treatments for pain relief, muscle <br> 
                     recovery, and total body wellness in Coventry
                 </h3>
             </div>
             <div class="headline buttons">
-                <button class="button appointment">Make Appointment</button>
-                <button class="button explore">Explore Services</button>
+                <button class="appointment">MAKE APPOINTMENT</button>
+                <button class="explore">Explore Services</button>
+            </div>
+            <div class="headline info">
+                <div class="hijama-image">
+                    <img src="{{ url_for('static', filename='images/cupping-cartoon.png') }}" alt="cupping-cartoon">
+                </div>
+                <div class="tagline">
+                    Expert Care for Your <br> Body & Mind
+                </div>
+                <div class="information"> 
+                    Coventry Hijama Clinic is a trusted wellness and rehabilitation centre specialising in Hijama (cupping therapy), sports massage, and advanced recovery treatments. Our experienced practitioners use evidence-based techniques to create a personalised approach for every client. We deliver safe, results-driven treatments that support physical health and overall wellbeing.
+                </div>
+            </div>
             </div>
         </div>
 
