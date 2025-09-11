@@ -119,27 +119,28 @@
 
     /*----------------------  INTRO SECTION  ----------------------------*/
    
-    .intro {
-      grid-column: 1 / 13;
+        .intro {
+        grid-column: 1 / 13;
 
-      display: flex; 
-      width: 100%;
-      height: 900px;
-      gap: 0px;
-      padding-bottom: 0px;
+        display: flex; 
+        width: 100%;
+        height: 900px;
+        gap: 0px;
+        padding-bottom: 0px;
+        border: none;
 
-      
-    }
-
-    .timeline {
-        display: flex;
-        align-items: flex-start;   /* align top */
-        gap: 17px;                 /* space between line and text */
-        margin: 50px;
-        position: relative;
-        margin-left: 40px;
-        margin-top: 280px;
+        
         }
+
+        .timeline {
+            display: flex;
+            align-items: flex-start;   /* align top */
+            gap: 17px;                 /* space between line and text */
+            margin: 50px;
+            position: relative;
+            margin-left: 40px;
+            margin-top: 280px;
+            }
 
         /* Left column: vertical line + circle */
         .line_circle {
@@ -181,7 +182,6 @@
         .sidelines.inactive {
         color: grey;
         }
-
 
         h1 {
             font-size: 68px;
@@ -256,6 +256,20 @@
             color: white;
         }
 
+        .explore:hover {
+            background: linear-gradient(135deg, #000000, #000000);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(121, 127, 134, 0.35);
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;   
+
+        }
+
+        .explore:active {
+            transform: translateY(0);
+            box-shadow: 0 3px 8px rgba(123, 125, 127, 0.2);
+        }
 
         .info {
             border: 1px solid #c0c0c061;
@@ -304,17 +318,103 @@
             text-align: left;
         }
 
-        
     /*--------------------------------------------------*/
 
-    .highlight {
-      grid-column: 1 / 13;
-    }
+    /*----------------------  MOVING SECTION  ----------------------------*/
+
+        .highlight {
+            grid-column: 1 / 13;
+
+            border: none;
+            margin-bottom: 70px;
+        }
+
+                :root {
+            --marquee-height: 100px;          /* tall like the reference */
+            --marquee-speed: 30s;             /* adjust to taste */                 /* very light warm gray */
+            --ink-strong: #0b0b0c;            /* near-black */
+            --ink-soft: #8f99ab;              /* cool gray for soft words */
+            --separator-stroke: #aab1bf;      /* ring outline */
+            --separator-ink: #6f7b8f;         /* plus color */
+            --gap: 1.5rem;                     /* large spacing */
+            --track-kerning: 0.02em;          /* tight tracking */
+            }
+
+            .marquee {
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            height: var(--marquee-height);
+            }
+
+            .marquee__track {
+            display: flex;
+            align-items: center;
+            gap: var(--gap);
+            width: max-content;
+            animation: scroll-x var(--marquee-speed) linear infinite;
+            will-change: transform;
+            }
+
+            .marquee__group {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--gap);
+            white-space: nowrap;
+            padding-inline: var(--gap);
+            }
+
+            /* Typography to match image */
+            .word {
+            font-weight: 400;
+            font-size: clamp(2.5rem, 8vw, 6.5rem);  /* scales up on larger screens */
+            line-height: 0.9;
+            text-transform: uppercase;
+            letter-spacing: -0.03em;     /* was 0.02em */
+
+            transform: scaleY(0.97);      /* 0.90–0.97 is a subtle height reduction */
+            transform-origin: 50% 60%;    /* pivot near optically centered baseline */
+            }
+
+            .word--strong { color: var(--ink-strong); }
+            .word--soft   { color: var(--ink-soft); }
+
+            /* Circular plus separators */
+            .dotplus {
+            display: inline-grid;
+            place-items: center;
+            width: clamp(1.5rem, 3vw, 2.25rem);
+            aspect-ratio: 1;
+            border-radius: 50%;
+            border: 2px solid var(--separator-stroke);
+            color: var(--separator-ink);
+            font-weight: 600;
+            font-size: clamp(0.9rem, 1.8vw, 1.15rem);
+            line-height: 1;
+            }
+
+            /* Motion ----------------------------
+            @keyframes scroll-x {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+            }
+
+            
+            @media (prefers-reduced-motion: reduce) {
+            .marquee__track { animation-duration: 0.001ms; animation-iteration-count: 1; }
+            }
+            */
+                
+
+
+    /*-------------------------Our services -------------------------*/
 
     .cards {
       grid-column: 1 / 13;
 
     }
+
+    /*--------------------------------------------------*/
 
     .diagram {
       grid-column: 1 / 13;
@@ -405,7 +505,39 @@
         </div>
 
     </div>
-    <div class="section highlight">Tagline / Key Words</div>
+
+    <div class="section highlight">
+        
+        <div class="marquee" role="region" aria-label="Benefits">
+            <div class="marquee__track">
+              <div class="marquee__group">
+                <span class="word word--strong">RELIEF</span>
+                <span class="dotplus" aria-hidden="true">+</span>
+                <span class="word word--soft">RECOVERY</span>
+                <span class="dotplus" aria-hidden="true">+</span>
+                <span class="word word--strong">CIRCULATION</span>
+                <span class="dotplus" aria-hidden="true">+</span>
+                <span class="word word--soft">RELAXATION</span>
+                <span class="dotplus" aria-hidden="true">+</span>
+                <span class="word word--strong">PERFORMANCE</span>
+                <span class="dotplus" aria-hidden="true">+</span>
+              </div>
+              <div class="marquee__group" aria-hidden="true">
+                <span class="word word--strong">RELIEF</span>
+                <span class="dotplus" aria-hidden="true">+</span>
+                <span class="word word--soft">RECOVERY</span>
+                <span class="dotplus" aria-hidden="true">+</span>
+                <span class="word word--strong">CIRCULATION</span>
+                <span class="dotplus" aria-hidden="true">+</span>
+                <span class="word word--soft">RELAXATION</span>
+                <span class="dotplus" aria-hidden="true">+</span>
+                <span class="word word--strong">PERFORMANCE</span>
+                <span class="dotplus" aria-hidden="true">+</span>
+              </div>
+            </div>
+          </div>
+          
+    </div>
     
     <div class="section cards"> Services
     </div>
