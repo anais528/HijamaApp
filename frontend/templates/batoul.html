@@ -393,7 +393,7 @@
             line-height: 1;
             }
 
-            /* Motion ----------------------------
+            
             @keyframes scroll-x {
             from { transform: translateX(0); }
             to   { transform: translateX(-50%); }
@@ -403,7 +403,7 @@
             @media (prefers-reduced-motion: reduce) {
             .marquee__track { animation-duration: 0.001ms; animation-iteration-count: 1; }
             }
-            */
+            
                 
 
 
@@ -415,11 +415,20 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      border: none;
 
     }
 
+    .services_title {
+        margin-bottom: 80px;
+        position: relative;
+        margin-left: -1100px;
+    }
+
     h2 {
-        
+        font-weight: 500;
+        font-size: 60px;
+        color: black;
     }
 
     /* =========================
@@ -489,67 +498,40 @@
 /* =========================
    Card skin (outer big cards)
    ========================= */
-.card.big{
-  position: relative;
-  display: grid;
-  place-items: stretch;
-  overflow: clip;
-}
+
 
 /* inner content card */
 .svc-card{
-  background: var(--grey);
   color: var(--ink);
-  border-radius: 30px;
-  padding: clamp(16px, 3vw, 28px);
+  border-radius: 50px;
+  padding: clamp(16px, 3vw, 40px);
   display: grid;
   grid-template-rows: auto 1fr auto;  /* header, title, footer */
   gap: clamp(12px, 2vw, 20px);
-  height: 90%;
-  box-shadow: 0 0 0 1px rgba(0,0,0,.06) inset;
+  height: 100%;
 }
-
 /* header */
 .svc-card__head{
   display:flex;
   align-items:center;
   justify-content:space-between;
 }
+
 .badge{
   display:inline-flex;
   align-items:center;
   justify-content:center;
   height: 40px;
-  padding: 0 16px;
+  padding: 20px 20px;
+  font-size: 13px;
   border-radius: 999px;
-  border: 2px solid var(--ring);
-  background: #f7f8fb;
-  color: var(--ink);
-  font: 600 0.9rem/1 Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  letter-spacing: 0.02em;
+  border: 1px solid black;
+  color: black;
+  font-weight: 500;
+  margin-top: 30px;
+  margin-left: 25px;
 }
 
-/* decorative “drawn corner” (if used instead of FA icon) */
-.corner{
-  position: relative;
-  display:inline-block;
-  width: 58px;
-  height: 58px;
-}
-.corner::before,
-.corner::after{
-  content:"";
-  position:absolute;
-  inset:auto 0 0 auto;
-  width: 100%;
-  height: 100%;
-  border-radius: 14px;
-  border: 6px solid transparent;
-  border-top-color: var(--accent);
-  border-right-color: var(--accent);
-  transform: rotate(180deg);
-}
-.corner::after{ inset:auto 8px 8px auto; opacity:.9; }
 
 /* title and footer */
 .svc-card__title{
@@ -592,12 +574,13 @@
 .corner-ico{
   display:inline-grid;
   place-items:center;
-  width: 58px;
+  background-color: red;
+  width: 108px;
   height: 58px;
   color: var(--accent);
   transform: rotate(45deg);
 }
-.corner-ico .fa{ font-size: 42px; line-height: 1; }
+.corner-ico .fa{ font-size: 202px; line-height: 1; }
 
 /* default: edges are expanded, so show content and hide the standalone arrow */
 .card.big > .svc-card{ display: grid; }
@@ -746,7 +729,7 @@
     
     <div class="section cards"> 
 
-        <h2 class="services_title"> Services </h2>
+        <h2 class="services_title"> Our Services </h2>
 
 
 <section class="services" aria-label="Services layout">
@@ -762,9 +745,11 @@
         <article class="svc-card" aria-labelledby="svc1-title">
           <header class="svc-card__head">
             <span class="badge">ADVANTAGES</span>
+
             <span class="corner-ico" aria-hidden="true">
               <i class="fa-solid fa-angles-up" aria-hidden="true"></i>
             </span>
+
           </header>
           <h3 id="svc1-title" class="svc-card__title">Hijama<br>(Cupping Therapy)</h3>
           <footer class="svc-card__foot">
@@ -791,7 +776,17 @@
 
     </div>
     
-    <div class="section diagram">Body Diagram / Image Section</div>
+    <div class="section diagram">Body Diagram / Image Section
+
+
+        
+
+
+    </div>
+
+
+
+
     <div class="section faq">FAQ / Common Questions</div>
     <div class="section footer">Footer</div>
   </div>
