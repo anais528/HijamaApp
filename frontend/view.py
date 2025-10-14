@@ -15,7 +15,7 @@ analytics_data = {
 
 @views.route('/landingpage')
 def landingpage():
-    return render_template('batoul.html')
+    return render_template('.html')
 
 @views.route('/')
 def home():
