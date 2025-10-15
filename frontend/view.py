@@ -4,6 +4,10 @@ from datetime import datetime
 
 views = Blueprint("views", __name__)
 
+@views.route('/healthz')
+def healthz():
+    return jsonify({'status': 'ok'}), 200
+
 # Sample data for your app
 bookings = []
 analytics_data = {
@@ -12,10 +16,9 @@ analytics_data = {
     'popular_services': []
 }
 
-
 @views.route('/landingpage')
 def landingpage():
-    return render_template('.html')
+    return render_template('batoul.html')
 
 @views.route('/')
 def home():
