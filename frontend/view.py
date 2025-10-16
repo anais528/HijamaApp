@@ -23,7 +23,7 @@ analytics_data = {
 @views.route('/')
 def home():
     """Main homepage - renders landing page"""
-    return render_template('landing/landingpage.html')
+    return render_template('batoul.html')
 
 
 @views.route('/landingpage')
