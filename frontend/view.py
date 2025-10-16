@@ -16,109 +16,133 @@ analytics_data = {
     'popular_services': []
 }
 
-@views.route('/landingpage')
-def landingpage():
-    return render_template('batoul.html')
+# ============================================
+# PUBLIC ROUTES
+# ============================================
 
 @views.route('/')
 def home():
-    """Main homepage - renders index.html"""
-    try:
-        return render_template('index.html')
-    except:
-        return """
-        <h1>Hijama App - Home</h1>
-        <nav>
-            <a href="/booking">Book Appointment</a> |
-            <a href="/analytics">Analytics</a> |
-            <a href="/contact">Contact</a>
-        </nav>
-        <p>Welcome to the Hijama App!</p>
-        <p>Please make sure your HTML files are in the correct location.</p>
-        """
+    """Main homepage - renders landing page"""
+    return render_template('landing/landingpage.html')
 
-@views.route('/booking')
+
+@views.route('/landingpage')
+def landingpage():
+    """Landing page route"""
+    return render_template('landing/landingpage.html')
+
+@views.route('/booking2')
 def booking():
-    """Booking page - renders booking.html"""
-    try:
-        return render_template('booking.html')
-    except:
-        return """
-        <h1>Book Your Hijama Appointment</h1>
-        <nav><a href="/">Home</a> | <a href="/analytics">Analytics</a> | <a href="/contact">Contact</a></nav>
-        <form method="POST" action="/api/booking">
-            <p><label>Name: <input type="text" name="name" required></label></p>
-            <p><label>Email: <input type="email" name="email" required></label></p>
-            <p><label>Phone: <input type="tel" name="phone" required></label></p>
-            <p><label>Preferred Date: <input type="date" name="date" required></label></p>
-            <p><label>Preferred Time: <input type="time" name="time" required></label></p>
-            <p><label>Service Type: 
-                <select name="service" required>
-                    <option value="">Select Service</option>
-                    <option value="hijama-dry">Dry Hijama</option>
-                    <option value="hijama-wet">Wet Hijama</option>
-                    <option value="hijama-massage">Hijama + Massage</option>
-                </select>
-            </label></p>
-            <p><label>Notes: <textarea name="notes" rows="3"></textarea></label></p>
-            <p><button type="submit">Book Appointment</button></p>
-        </form>
-        """
+    """Booking page"""
+    return render_template('booking/booking.html')
 
-@views.route('/analytics')
-def analytics():
-    """Analytics page - renders analytics.html"""
-    try:
-        return render_template('analytics.html')
-    except:
-        return f"""
-        <h1>Hijama App Analytics</h1>
-        <nav><a href="/">Home</a> | <a href="/booking">Book</a> | <a href="/contact">Contact</a></nav>
-        <div>
-            <h2>Dashboard Overview</h2>
-            <p><strong>Total Bookings:</strong> {len(bookings)}</p>
-            <p><strong>This Month:</strong> {sum(1 for b in bookings if b.get('status') == 'confirmed')}</p>
-            <p><strong>Revenue:</strong> ${analytics_data['monthly_revenue']}</p>
-            
-            <h3>Recent Bookings</h3>
-            <ul>
-                {chr(10).join([f"<li>{b.get('name', 'Unknown')} - {b.get('service', 'N/A')} - {b.get('date', 'TBD')}</li>" for b in bookings[-5:]])}
-            </ul>
-        </div>
-        """
 
 @views.route('/contact')
 def contact():
-    """Contact page - renders contact.html"""
-    try:
-        return render_template('contact.html')
-    except:
-        return """
-        <h1>Contact Us</h1>
-        <nav><a href="/">Home</a> | <a href="/booking">Book</a> | <a href="/analytics">Analytics</a></nav>
-        <div>
-            <h2>Get in Touch</h2>
-            <p><strong>Phone:</strong> +1 (555) 123-4567</p>
-            <p><strong>Email:</strong> info@hijamaapp.com</p>
-            <p><strong>Address:</strong> 123 Wellness Street, Health City, HC 12345</p>
+    """Contact page"""
+    return render_template('landing/contact.html')
+
+
+@views.route('/faq')
+def faq():
+    """FAQ page"""
+    return render_template('landing/faq.html')
+
+@views.route('/services')
+def services():
+    """Service details page"""
+    return render_template('landing/service_details.html')
+
+@views.route('/service-details')
+def service_details():
+    """Alternative route for service details"""
+    return render_template('landing/service_details.html')
+
+# ============================================
+# ADMIN ROUTES
+# ============================================
+
+@views.route('/admin/login')
+def admin_login():
+    """Admin login page"""
+    return render_template('admin/admin_login.html')
+
+@views.route('/admin/dashboard')
+def admin_dashboard():
+    """Admin dashboard"""
+    # TODO: Add authentication check
+    return render_template('admin/admin_dashboard.html')
+
+@views.route('/admin/bookings')
+def admin_bookings():
+    """Admin booking management page"""
+    # TODO: Add authentication check
+    return render_template('admin/booking_management.html')
+
+@views.route('/admin/analytics')
+def admin_analytics():
+    """Admin analytics dashboard"""
+    # TODO: Add authentication check
+    return render_template('admin/analytics_dashboard.html')
+
+@views.route('/admin/content')
+def admin_content():
+    """Admin content management page"""
+    # TODO: Add authentication check
+    return render_template('admin/content_management.html')
+
+
+# @views.route('/booking')
+# def booking():
+#     """Booking page - renders booking.html"""
+#     try:
+#         return render_template('booking.html')
+#     except:
+#         return """
+#         <h1> Book Your Hijama Appointment </h1>
+#         <nav><a href="/">Home</a> | <a href="/analytics">Analytics</a> | <a href="/contact">Contact</a></nav>
+#         <form method="POST" action="/api/booking">
+#             <p><label>Name: <input type="text" name="name" required></label></p>
+#             <p><label>Email: <input type="email" name="email" required></label></p>
+#             <p><label>Phone: <input type="tel" name="phone" required></label></p>
+#             <p><label>Preferred Date: <input type="date" name="date" required></label></p>
+#             <p><label>Preferred Time: <input type="time" name="time" required></label></p>
+#             <p><label>Service Type: 
+#                 <select name="service" required>
+#                     <option value="">Select Service</option>
+#                     <option value="hijama-dry">Dry Hijama</option>
+#                     <option value="hijama-wet">Wet Hijama</option>
+#                     <option value="hijama-massage">Hijama + Massage</option>
+#                 </select>
+#             </label></p>
+#             <p><label>Notes: <textarea name="notes" rows="3"></textarea></label></p>
+#             <p><button type="submit">Book Appointment</button></p>
+#         </form>
+#         """
+
+# @views.route('/analytics')
+# def analytics():
+#     """Analytics page - renders analytics.html"""
+#     try:
+#         return render_template('analytics.html')
+#     except:
+#         return f"""
+#         <h1>Hijama App Analytics</h1>
+#         <nav><a href="/">Home</a> | <a href="/booking">Book</a> | <a href="/contact">Contact</a></nav>
+#         <div>
+#             <h2>Dashboard Overview</h2>
+#             <p><strong>Total Bookings:</strong> {len(bookings)}</p>
+#             <p><strong>This Month:</strong> {sum(1 for b in bookings if b.get('status') == 'confirmed')}</p>
+#             <p><strong>Revenue:</strong> ${analytics_data['monthly_revenue']}</p>
             
-            <h3>Send us a message</h3>
-            <form method="POST" action="/api/contact">
-                <p><label>Name: <input type="text" name="name" required></label></p>
-                <p><label>Email: <input type="email" name="email" required></label></p>
-                <p><label>Subject: <input type="text" name="subject" required></label></p>
-                <p><label>Message: <textarea name="message" rows="5" required></textarea></label></p>
-                <p><button type="submit">Send Message</button></p>
-            </form>
-            
-            <h3>Business Hours</h3>
-            <ul>
-                <li>Monday - Friday: 9:00 AM - 7:00 PM</li>
-                <li>Saturday: 10:00 AM - 5:00 PM</li>
-                <li>Sunday: Closed</li>
-            </ul>
-        </div>
-        """
+#             <h3>Recent Bookings</h3>
+#             <ul>
+#                 {chr(10).join([f"<li>{b.get('name', 'Unknown')} - {b.get('service', 'N/A')} - {b.get('date', 'TBD')}</li>" for b in bookings[-5:]])}
+#             </ul>
+#         </div>
+#         """
+
+
 
 # API Routes for handling form submissions and data
 
