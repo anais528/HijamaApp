@@ -1,0 +1,30 @@
+
+services:
+  db:
+    image: postgres:16
+    restart: always
+    environment:
+      POSTGRES_USER: hijamauser
+      POSTGRES_PASSWORD: hijamapass
+      POSTGRES_DB: hijamadb
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  web:
+    build: .
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - "8080:5000"
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URL=postgresql+psycopg2://hijamauser:hijamapass@db:5432/hijamadb
+    volumes:
+      - .:/app
+
+volumes:
+  pgdata:
