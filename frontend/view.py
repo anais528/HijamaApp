@@ -31,7 +31,7 @@ def landingpage():
     """Landing page route"""
     return render_template('landing/landingpage.html')
 
-@views.route('/booking2')
+@views.route('/booking')
 def booking():
     """Booking page"""
     return render_template('booking/booking.html')
