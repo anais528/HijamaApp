@@ -50,3 +50,10 @@ class Service(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     duration = db.Column(db.Interval, nullable=False)  # duration stored as interval
+
+
+class RoundRobinTracker(db.Model):
+    __tablename__ = 'round_robin_tracker'
+    id = db.Column(db.Integer, primary_key=True)
+    gender = db.Column(db.Enum('male', 'female', name='gender_enum'), unique=True, nullable=False)
+    last_assigned_staff_id = db.Column(db.Integer, nullable=True)

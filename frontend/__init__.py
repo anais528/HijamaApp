@@ -2,14 +2,17 @@ from flask import Flask
 #from flask_cors import CORS
 from .config import Config
 from .extensions import db
-from datetime import timedelta
+from datetime import timedelta, time 
 
 DB_NAME = "database.db"
 
 
 def create_test_data(app):
     with app.app_context():
-        from .models import Staff, Service
+        from .models import Staff, Service, StaffAvailability
+
+        from datetime import time, timedelta
+
         db.drop_all()
         db.create_all()  # Create tables
         
@@ -17,7 +20,40 @@ def create_test_data(app):
         if not Staff.query.first():
             staff1 = Staff(name="Dr. Female", gender="female")
             staff2 = Staff(name="Dr. Male", gender="male")
-            db.session.add_all([staff1, staff2])
+            staff3 = Staff(name="Dr. New Male", gender="male")  # New male staff
+            db.session.add_all([staff1, staff2, staff3])
+            db.session.commit()
+
+            # Availability for staff1 (Female) Mon-Fri 9am-5pm
+            for wd in range(5):
+                avail = StaffAvailability(
+                    staff_id=staff1.id,
+                    weekday=wd,
+                    start_time=time(9, 0),
+                    end_time=time(17, 0)
+                )
+                db.session.add(avail)
+
+            # Availability for staff2 (Male) Tue-Sat 10am-6pm
+            for wd in range(1, 6):
+                avail = StaffAvailability(
+                    staff_id=staff2.id,
+                    weekday=wd,
+                    start_time=time(10, 0),
+                    end_time=time(18, 0)
+                )
+                db.session.add(avail)
+
+            # Availability for new male staff3 Wed-Sun 8am-4pm
+            for wd in range(2, 7):
+                avail = StaffAvailability(
+                    staff_id=staff3.id,
+                    weekday=wd,
+                    start_time=time(8, 0),
+                    end_time=time(16, 0)
+                )
+                db.session.add(avail)
+
             db.session.commit()
             print("Test staff data created.")
         
@@ -29,6 +65,7 @@ def create_test_data(app):
             db.session.add_all([service1, service2, service3])
             db.session.commit()
             print("Test services data created.")
+
 
 
 

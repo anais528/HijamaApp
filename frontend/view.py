@@ -3,8 +3,11 @@ import os
 from datetime import datetime
 from datetime import timedelta
 
-from .models import Client, Staff, Appointment, StaffAvailability, Service
+from .models import Client, Staff, Appointment, StaffAvailability, Service, RoundRobinTracker
+
 from .extensions import db
+import random
+
 
 views = Blueprint("views", __name__)
 
@@ -29,20 +32,70 @@ def home():
     """Main homepage - renders landing page"""
     return render_template('batoul.html')
 
-from datetime import timedelta
+
+def get_available_staff(gender, appointment_time, total_duration):
+    weekday = appointment_time.weekday()
+    start_time = appointment_time.time()
+    end_time = (appointment_time + total_duration).time()
+
+    staff_list = Staff.query.filter_by(gender=gender).all()
+
+    available_staff = []
+    for staff in staff_list:
+        availability = StaffAvailability.query.filter_by(
+            staff_id=staff.id,
+            weekday=weekday
+        ).filter(
+            StaffAvailability.start_time <= start_time,
+            StaffAvailability.end_time >= end_time
+        ).first()
+
+        if not availability:
+            continue
+
+        overlap = Appointment.query.filter(
+            Appointment.staff_id == staff.id,
+            Appointment.appointment_time < appointment_time + total_duration,
+            Appointment.end_time > appointment_time
+        ).first()
+
+        if not overlap:
+            available_staff.append(staff)
+
+    if not available_staff:
+        return None
+
+    # Round robin assignment
+    tracker = RoundRobinTracker.query.filter_by(gender=gender).first()
+    if not tracker:
+        tracker = RoundRobinTracker(gender=gender, last_assigned_staff_id=None)
+        db.session.add(tracker)
+        db.session.commit()
+
+    last_id = tracker.last_assigned_staff_id
+    idx = 0
+    if last_id:
+        for i, staff in enumerate(available_staff):
+            if staff.id == last_id:
+                idx = (i + 1) % len(available_staff)
+                break
+
+    staff_to_assign = available_staff[idx]
+    tracker.last_assigned_staff_id = staff_to_assign.id
+    db.session.commit()
+    return staff_to_assign
+
 
 @views.route('/book', methods=['GET', 'POST'])
 def book_appointment():
-    staff_members = Staff.query.all()
     services = Service.query.all()
 
     if request.method == 'POST':
         name = request.form['name']
         contact_info = request.form['contact_info']
         gender = request.form['gender']
-        staff_id = int(request.form['staff_id'])
         appointment_time = datetime.fromisoformat(request.form['appointment_time'])
-        service_ids = request.form.getlist('services')  # multiple service IDs from form
+        service_ids = request.form.getlist('services')
 
         client = Client.query.filter_by(name=name, contact_info=contact_info, gender=gender).first()
         if not client:
@@ -50,24 +103,19 @@ def book_appointment():
             db.session.add(client)
             db.session.commit()
 
-        # Calculate total duration from selected services
         total_duration = timedelta()
         for s_id in service_ids:
             service = Service.query.get(int(s_id))
             total_duration += service.duration
 
-        end_time = appointment_time + total_duration
-
-        # Check for overlaps (Staff available during this full interval)
-        overlap = Appointment.query.filter(
-            Appointment.staff_id == staff_id,
-            Appointment.appointment_time < end_time,
-            Appointment.end_time > appointment_time
-        ).first()
-
-        if overlap:
-            flash("Selected staff is not available at this time for the full duration.")
+        # Automatically assign staff
+        available_staff_member = get_available_staff(gender, appointment_time, total_duration)
+        if not available_staff_member:
+            flash("No staff available at the requested time. Please try a different time.")
             return redirect(url_for('views.book_appointment'))
+
+        staff_id = available_staff_member.id
+        end_time = appointment_time + total_duration
 
         # Create appointment
         appt = Appointment(
@@ -79,10 +127,12 @@ def book_appointment():
         )
         db.session.add(appt)
         db.session.commit()
-        flash("Appointment booked!")
+        flash(f"Appointment booked with {available_staff_member.name}!")
         return redirect(url_for('views.book_appointment'))
 
-    return render_template('bookingtest.html', staff_members=staff_members, services=services)
+    return render_template('bookingtest.html', services=services)
+
+
 
 
 @views.route('/landingpage')
