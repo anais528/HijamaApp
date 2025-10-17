@@ -12,15 +12,373 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Document </title>
-</head>
-<body>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Your Hijama Appointment</title>
+  
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+  
+  <!-- Calendly CSS -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 
-    Calendly API - booking page
-    
-    <!-- TO DO ADD CALENDLLY API -->
-    
+  <style>
+    /* ========== RESET & BASE ========== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #F9F9FD;
+      color: #333;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; height: auto; }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 0;
+      width: 100%;
+      padding: clamp(10px, 2vw, 20px);
+    }
+
+    .section { grid-column: 1 / 13; padding: clamp(20px, 4vw, 60px); }
+
+    /* ========== HEADER ========== */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: clamp(15px, 3vw, 40px);
+    }
+
+    .logo_image { height: clamp(60px, 8vw, 100px); }
+
+    .nav {
+      display: flex;
+      gap: clamp(15px, 3vw, 40px);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav a { font-weight: 500; transition: 0.3s; }
+    .nav a:hover { font-weight: 600; }
+
+    .login i { font-size: 1.5rem; }
+
+    /* ========== BOOKING HERO ========== */
+    .booking-hero {
+      text-align: center;
+      padding: clamp(40px, 6vw, 80px) clamp(20px, 4vw, 60px);
+      background: #fff;
+      border-radius: 30px;
+      margin-bottom: 40px;
+    }
+
+    .booking-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .booking-hero p {
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      color: #666;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* ========== INFO SECTION ========== */
+    .info-section {
+      background: #fff;
+      border-radius: 30px;
+      padding: clamp(30px, 4vw, 50px);
+      margin-bottom: 40px;
+    }
+
+    .info-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+    }
+
+    .info-box {
+      flex: 1 1 300px;
+      max-width: 400px;
+      background: #f1f2f6;
+      border-radius: 20px;
+      padding: 30px;
+      transition: 0.3s ease;
+    }
+
+    .info-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .info-box h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .info-box p, .info-box ul {
+      color: #666;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .info-box ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    .info-box ul li {
+      margin-bottom: 8px;
+    }
+
+    /* ========== SETUP INSTRUCTIONS ========== */
+    .setup-instructions {
+      background: #fff3cd;
+      border: 2px solid #ffc107;
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 40px;
+    }
+
+    .setup-instructions h3 {
+      color: #856404;
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .setup-instructions ol {
+      color: #856404;
+      padding-left: 20px;
+      line-height: 1.8;
+    }
+
+    .setup-instructions ol li {
+      margin-bottom: 10px;
+    }
+
+    .setup-instructions code {
+      background: #f8f9fa;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      color: #d63384;
+    }
+
+    /* ========== CALENDLY SECTION ========== */
+    .calendly-section {
+      background: #fff;
+      border-radius: 30px;
+      padding: clamp(30px, 4vw, 50px);
+      margin-bottom: 40px;
+    }
+
+    .calendly-inline-widget {
+      min-width: 320px;
+      height: 700px;
+      border-radius: 10px;
+    }
+
+    /* ========== FOOTER ========== */
+    .footer {
+      background: #111;
+      color: #eee;
+      padding: 60px 20px;
+      text-align: center;
+      border-radius: 30px 30px 0 0;
+    }
+
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-section h4 {
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .footer-section a {
+      display: block;
+      color: #bbb;
+      margin-bottom: 8px;
+      transition: 0.3s;
+    }
+
+    .footer-section a:hover {
+      color: #fff;
+    }
+
+    .footer-bottom {
+      font-size: 0.9rem;
+      color: #aaa;
+      border-top: 1px solid #333;
+      padding-top: 20px;
+    }
+
+    /* ========== ANIMATION ========== */
+    .fade-slide {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease-out;
+    }
+
+    .fade-slide.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      .header { flex-direction: column; }
+      .nav { flex-wrap: wrap; gap: 15px; }
+      .info-grid { flex-direction: column; align-items: center; }
+      .footer-grid { flex-direction: column; align-items: center; }
+      .calendly-inline-widget { height: 600px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- HEADER -->
+    <header class="section header fade-slide">
+      <img class="logo_image" src="{{ url_for('static', filename='images/logo.png') }}" alt="Coventry Hijama Clinic Logo">
+      <nav class="nav">
+        <a href="/">Home</a>
+        <a href="/services">Services</a>
+        <a href="/contact">Contact</a>
+        <a href="/faq">FAQs</a>
+        <a class="login" href="/admin"><i class="fa fa-user-circle"></i></a>
+      </nav>
+    </header>
+
+    <!-- BOOKING HERO -->
+    <section class="section booking-hero fade-slide">
+      <h1>📅 Book Your Appointment</h1>
+      <p>Schedule your Hijama or Sports Therapy session at a time that works for you. We look forward to helping you on your wellness journey.</p>
+    </section>
+
+    <!-- SETUP INSTRUCTIONS (Remove after Calendly setup) -->
+    <section class="section setup-instructions fade-slide">
+      <h3><i class="fas fa-exclamation-triangle"></i> Setup Required</h3>
+      <p><strong>To activate the booking widget, follow these steps:</strong></p>
+      <ol>
+        <li>Create a free account at <a href="https://calendly.com" target="_blank" style="color: #0066cc;">calendly.com</a></li>
+        <li>Set up your event type (e.g., "Hijama Session - 30 min")</li>
+        <li>Configure your availability hours</li>
+        <li>Copy your Calendly scheduling link (e.g., <code>https://calendly.com/your-username/hijama-session</code>)</li>
+        <li>Replace <code>YOUR-USERNAME</code> and <code>YOUR-EVENT-TYPE</code> in the widget code below (line ~280)</li>
+        <li>Remove this yellow instruction box from the HTML</li>
+      </ol>
+    </section>
+
+    <!-- INFO SECTION -->
+    <section class="section info-section fade-slide">
+      <div class="info-grid">
+        <div class="info-box">
+          <h3><i class="fas fa-clipboard-list"></i> Before You Book</h3>
+          <ul>
+            <li>Arrive 10 minutes early for your appointment</li>
+            <li>Wear comfortable, loose-fitting clothing</li>
+            <li>Avoid eating heavy meals 2 hours before</li>
+            <li>Stay hydrated before and after treatment</li>
+          </ul>
+        </div>
+
+        <div class="info-box">
+          <h3><i class="fas fa-heart"></i> What to Expect</h3>
+          <p>
+            Your Hijama session typically lasts 30-45 minutes. Our experienced practitioners 
+            will guide you through the process and ensure your comfort throughout the treatment. 
+            We use sterile equipment and follow all health & safety protocols.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CALENDLY WIDGET -->
+    <section class="section calendly-section fade-slide">
+      <!-- 
+        ⚠️ REPLACE THE URL BELOW WITH YOUR ACTUAL CALENDLY LINK
+        Format: https://calendly.com/YOUR-USERNAME/YOUR-EVENT-TYPE
+        Example: https://calendly.com/hijama-clinic/30min-session
+      -->
+      <div 
+        class="calendly-inline-widget" 
+        data-url="https://calendly.com/YOUR-USERNAME/YOUR-EVENT-TYPE?hide_event_type_details=1&hide_gdpr_banner=1">
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="section footer fade-slide">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <a href="/">Home</a>
+          <a href="/services">Services</a>
+          <a href="/booking">Book Appointment</a>
+          <a href="/contact">Contact</a>
+        </div>
+
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p>📍 Coventry, United Kingdom</p>
+          <p>📞 +44 1234 567890</p>
+          <p>✉️ info@coventryhijama.co.uk</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Follow Us</h4>
+          <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
+          <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+          <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        &copy; 2025 Coventry Hijama Clinic. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <!-- Calendly JavaScript -->
+  <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+  <!-- Scroll Fade Animation Script -->
+  <script>
+    const fadeEls = document.querySelectorAll('.fade-slide');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    fadeEls.forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
