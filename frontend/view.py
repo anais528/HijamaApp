@@ -1,6 +1,10 @@
-from flask import Blueprint, render_template, jsonify, request, send_from_directory
+from flask import Blueprint, render_template, jsonify, request, send_from_directory, redirect, url_for, flash
 import os
 from datetime import datetime
+from datetime import timedelta
+
+from .models import Client, Staff, Appointment, StaffAvailability, Service
+from .extensions import db
 
 views = Blueprint("views", __name__)
 
@@ -24,6 +28,61 @@ analytics_data = {
 def home():
     """Main homepage - renders landing page"""
     return render_template('batoul.html')
+
+from datetime import timedelta
+
+@views.route('/book', methods=['GET', 'POST'])
+def book_appointment():
+    staff_members = Staff.query.all()
+    services = Service.query.all()
+
+    if request.method == 'POST':
+        name = request.form['name']
+        contact_info = request.form['contact_info']
+        gender = request.form['gender']
+        staff_id = int(request.form['staff_id'])
+        appointment_time = datetime.fromisoformat(request.form['appointment_time'])
+        service_ids = request.form.getlist('services')  # multiple service IDs from form
+
+        client = Client.query.filter_by(name=name, contact_info=contact_info, gender=gender).first()
+        if not client:
+            client = Client(name=name, contact_info=contact_info, gender=gender)
+            db.session.add(client)
+            db.session.commit()
+
+        # Calculate total duration from selected services
+        total_duration = timedelta()
+        for s_id in service_ids:
+            service = Service.query.get(int(s_id))
+            total_duration += service.duration
+
+        end_time = appointment_time + total_duration
+
+        # Check for overlaps (Staff available during this full interval)
+        overlap = Appointment.query.filter(
+            Appointment.staff_id == staff_id,
+            Appointment.appointment_time < end_time,
+            Appointment.end_time > appointment_time
+        ).first()
+
+        if overlap:
+            flash("Selected staff is not available at this time for the full duration.")
+            return redirect(url_for('views.book_appointment'))
+
+        # Create appointment
+        appt = Appointment(
+            client_id=client.id,
+            staff_id=staff_id,
+            appointment_time=appointment_time,
+            end_time=end_time,
+            status='booked'
+        )
+        db.session.add(appt)
+        db.session.commit()
+        flash("Appointment booked!")
+        return redirect(url_for('views.book_appointment'))
+
+    return render_template('bookingtest.html', staff_members=staff_members, services=services)
 
 
 @views.route('/landingpage')

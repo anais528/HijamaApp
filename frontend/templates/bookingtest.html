@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+    <title>Book Appointment</title>
+</head>
+<body>
+    <h1>Book An Appointment</h1>
+
+    <form method="post">
+        Name: <input type="text" name="name" required><br>
+        Contact Info: <input type="email" name="contact_info" required><br>
+        Gender: 
+        <select name="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select><br>
+    
+        Staff Member: 
+        <select name="staff_id" required>
+        {% for staff in staff_members %}
+            <option value="{{ staff.id }}">{{ staff.name }} ({{ staff.gender }})</option>
+        {% endfor %}
+        </select><br>
+    
+        Services (choose one or more): <br>
+        {% for service in services %}
+          <input type="checkbox" name="services" value="{{ service.id }}"> {{ service.name }} ({{ service.duration }}) <br>
+        {% endfor %}
+    
+        Appointment Time: <input type="datetime-local" name="appointment_time" required><br>
+        <button type="submit">Book</button>
+    </form>    
+
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</body>
+</html>

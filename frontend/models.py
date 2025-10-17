@@ -26,11 +26,13 @@ class Appointment(db.Model):
     client_id = db.Column(db.Integer, db.ForeignKey('clients.id'), nullable=False)
     staff_id = db.Column(db.Integer, db.ForeignKey('staff.id'), nullable=False)
     appointment_time = db.Column(db.DateTime, nullable=False)
-    status = db.Column(db.String(50), default='booked')  # e.g., booked, cancelled, completed
+    end_time = db.Column(db.DateTime, nullable=False)  # new end time calculated from duration
+    status = db.Column(db.String(50), default='booked')
     notes = db.Column(db.Text)
-
+    
     client = db.relationship('Client', back_populates='appointments')
     staff = db.relationship('Staff', back_populates='appointments')
+
 
 class StaffAvailability(db.Model):
     __tablename__ = 'staff_availabilities'
@@ -41,3 +43,10 @@ class StaffAvailability(db.Model):
     end_time = db.Column(db.Time, nullable=False)
 
     staff = db.relationship('Staff', back_populates='availabilities')
+
+
+class Service(db.Model):
+    __tablename__ = 'services'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    duration = db.Column(db.Interval, nullable=False)  # duration stored as interval
