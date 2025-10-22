@@ -30,7 +30,7 @@ analytics_data = {
 @views.route('/')
 def home():
     """Main homepage - renders landing page"""
-    return render_template('batoul.html')
+    return render_template('landing/landingpage.html')
 
 
 def get_available_staff(gender, appointment_time, total_duration):
@@ -151,6 +151,10 @@ def contact():
     """Contact page"""
     return render_template('landing/contact.html')
 
+@views.route('/benefits')
+def benefits():
+    """Learn about Benefits of HIjama"""
+    return render_template('landing/benefits.html')
 
 @views.route('/faq')
 def faq():
