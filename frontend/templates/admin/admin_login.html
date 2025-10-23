@@ -15,9 +15,103 @@ Main Features:
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
+
+    <style> 
+
+    body {
+      margin: 0px; 
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+      .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height:100vh; 
+       
+      }
+
+      .login-box {
+        border: 1px solid black;
+        padding: 30px ;
+        width: 400px;
+        text-align: center;
+  
+      }
+
+  
+
+      input {
+        background: transparent;
+        border: none;
+        border-bottom: 2px solid black;
+        outline: none;
+        width: 100%;
+        padding: 10px  0; 
+        color: #202020; /*text color when typing*/
+        font-size: 14px;
+      }
+
+      input::placeholder {
+        color: rgb(52, 51, 57);
+        font-size: 12px;
+        letter-spacing: 1px;
+
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      input:focus {
+        border-bottom-color: black;
+      }
+
+      .login-btn {
+        background: transparent;
+        border: 2px solid black;
+        color: grey;
+        padding: 12px 40px;
+        font-size: 14px;
+        cursor: pointer;
+        letter-spacing: 2px;
+        margin-top: 10px;
+        transition: all 0.3s ease;
+      }
+
+      .login-btn:hover{
+        background-color: grey;
+        color: white;
+      }
+
+    
+  
+
+    
+
+    
+
+    </style>
 </head>
 <body>
-     admin dashboard
+
+
+<div class="login-container">
+
+
+  <div class="login-box">
+    <div class="icon"> </div>
+    <h1> Admin Panel </h1>
+
+    <form>
+      <input type="text" placeholder="USERNAME" class="input-field">
+      <input type="password" placeholder="PASSWORD" class = "input-field">
+      <button type="submit" class="login-btn"> LOGIN </button>
+    </form>
+  </div>
+</div>
 
 </body>
 </html>
