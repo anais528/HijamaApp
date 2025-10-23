@@ -280,19 +280,6 @@
       <p>Schedule your Hijama or Sports Therapy session at a time that works for you. We look forward to helping you on your wellness journey.</p>
     </section>
 
-    <!-- SETUP INSTRUCTIONS (Remove after Calendly setup) -->
-    <section class="section setup-instructions fade-slide">
-      <h3><i class="fas fa-exclamation-triangle"></i> Setup Required</h3>
-      <p><strong>To activate the booking widget, follow these steps:</strong></p>
-      <ol>
-        <li>Create a free account at <a href="https://calendly.com" target="_blank" style="color: #0066cc;">calendly.com</a></li>
-        <li>Set up your event type (e.g., "Hijama Session - 30 min")</li>
-        <li>Configure your availability hours</li>
-        <li>Copy your Calendly scheduling link (e.g., <code>https://calendly.com/your-username/hijama-session</code>)</li>
-        <li>Replace <code>YOUR-USERNAME</code> and <code>YOUR-EVENT-TYPE</code> in the widget code below (line ~280)</li>
-        <li>Remove this yellow instruction box from the HTML</li>
-      </ol>
-    </section>
 
     <!-- INFO SECTION -->
     <section class="section info-section fade-slide">
@@ -320,15 +307,9 @@
 
     <!-- CALENDLY WIDGET -->
     <section class="section calendly-section fade-slide">
-      <!-- 
-        ⚠️ REPLACE THE URL BELOW WITH YOUR ACTUAL CALENDLY LINK
-        Format: https://calendly.com/YOUR-USERNAME/YOUR-EVENT-TYPE
-        Example: https://calendly.com/hijama-clinic/30min-session
-      -->
-      <div 
-        class="calendly-inline-widget" 
-        data-url="https://calendly.com/YOUR-USERNAME/YOUR-EVENT-TYPE?hide_event_type_details=1&hide_gdpr_banner=1">
-      </div>
+      <!-- Calendly inline widget begin -->
+      <div class="calendly-inline-widget" data-url="https://calendly.com/hijamacoventry" style="min-width:320px;height:700px;"></div>
+      <!-- Calendly inline widget end -->
     </section>
 
     <!-- FOOTER -->
