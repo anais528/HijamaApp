@@ -49,6 +49,8 @@ Main Features:
 
     /* ========== HEADER ========== */
     .header {
+      background-color: #1a1919;
+      color: white;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -158,8 +160,8 @@ Main Features:
       to { transform: translateX(-50%); }
     }
 
-    /* ========== SERVICES ========== */
-    .cards {
+    /* ========== SERVICES CAROUSEL ========== */
+    .services-carousel {
       text-align: center;
       background: #fff;
     }
@@ -203,6 +205,254 @@ Main Features:
       font-size: 0.95rem;
       opacity: 0.9;
       margin-bottom: 15px;
+    }
+
+    /* ========== REVIEWS CAROUSEL ========== */
+    .reviews-carousel {
+      background: #f8f9fa;
+      text-align: center;
+      position: relative;
+      padding: 80px 20px;
+    }
+
+    .reviews-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 60px;
+      font-weight: 700;
+    }
+
+    .reviews-carousel-container {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 100px;
+    }
+
+    .reviews-carousel-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 60px;
+      height: 60px;
+      background: transparent;
+      border: 2px solid #333;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.3s;
+      font-size: 1.5rem;
+    }
+
+    .reviews-carousel-nav:hover {
+      background: #333;
+      color: #fff;
+    }
+
+    .reviews-carousel-nav.prev { left: 10px; }
+    .reviews-carousel-nav.next { right: 10px; }
+
+    .reviews-carousel-wrapper {
+      overflow: hidden;
+    }
+
+    .reviews-carousel-track {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .review-slide {
+      min-width: 100%;
+      padding: 40px 20px;
+    }
+
+    .review-content {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      line-height: 1.8;
+      color: #333;
+      margin-bottom: 30px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .review-content strong {
+      font-weight: 700;
+      color: #000;
+    }
+
+    .review-author {
+      font-size: 1.1rem;
+      color: #666;
+      font-style: italic;
+    }
+
+    .reviews-dots {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 40px;
+    }
+
+    .reviews-dot {
+      width: 12px;
+      height: 12px;
+      background: #ccc;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .reviews-dot.active {
+      background: #333;
+      width: 35px;
+      border-radius: 6px;
+    }
+
+    .cta-booking {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 15px 40px;
+      background: #000;
+      color: #fff;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s;
+      border: 2px solid #000;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cta-booking:hover {
+      background: transparent;
+      color: #000;
+      transform: translateY(-3px);
+    }
+
+    /* ========== REVIEWS CAROUSEL ========== */
+    .reviews-carousel {
+      background: #f8f9fa;
+      text-align: center;
+      position: relative;
+      padding: 80px 20px;
+    }
+
+    .reviews-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 60px;
+      font-weight: 700;
+    }
+
+    .reviews-carousel-container {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 100px;
+    }
+
+    .reviews-carousel-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 60px;
+      height: 60px;
+      background: transparent;
+      border: 2px solid #333;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.3s;
+      font-size: 1.5rem;
+    }
+
+    .reviews-carousel-nav:hover {
+      background: #333;
+      color: #fff;
+    }
+
+    .reviews-carousel-nav.prev { left: 10px; }
+    .reviews-carousel-nav.next { right: 10px; }
+
+    .reviews-carousel-wrapper {
+      overflow: hidden;
+    }
+
+    .reviews-carousel-track {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .review-slide {
+      min-width: 100%;
+      padding: 40px 20px;
+    }
+
+    .review-content {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      line-height: 1.8;
+      color: #333;
+      margin-bottom: 30px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .review-content strong {
+      font-weight: 700;
+      color: #000;
+    }
+
+    .review-author {
+      font-size: 1.1rem;
+      color: #666;
+      font-style: italic;
+    }
+
+    .reviews-dots {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 40px;
+    }
+
+    .reviews-dot {
+      width: 12px;
+      height: 12px;
+      background: #ccc;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .reviews-dot.active {
+      background: #333;
+      width: 35px;
+      border-radius: 6px;
+    }
+
+    .cta-booking {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 15px 40px;
+      background: #000;
+      color: #fff;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s;
+      border: 2px solid #000;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cta-booking:hover {
+      background: transparent;
+      color: #000;
+      transform: translateY(-3px);
     }
 
     /* ========== FOOTER ========== */
@@ -338,12 +588,62 @@ Main Features:
     </section>
 
 
+    <!-- REVIEWS CAROUSEL -->
+    <section class="section reviews-carousel fade-slide">
+      <h2 class="reviews-title">Client Reviews</h2>
+      <div class="reviews-carousel-container">
+        <div class="reviews-carousel-nav prev" onclick="moveReviewsCarousel(-1)">
+          <i class="fas fa-chevron-left"></i>
+        </div>
+        <div class="reviews-carousel-wrapper">
+          <div class="reviews-carousel-track" id="reviewsCarouselTrack">
+            <div class="review-slide">
+              <div class="review-content">
+                For general wellness, once every <strong>4-6 weeks</strong> is common. For <strong>injury or chronic pain</strong>, weekly or <strong>bi-weekly sessions</strong> may be recommended initially.
+              </div>
+              <div class="review-author">- Treatment Frequency Guide</div>
+            </div>
+            <div class="review-slide">
+              <div class="review-content">
+                "The hijama therapy completely changed my life. I suffered from chronic back pain for years, and after just three sessions, I felt incredible relief."
+              </div>
+              <div class="review-author">- Hajra R., Regular Client</div>
+            </div>
+            <div class="review-slide">
+              <div class="review-content">
+                "Had the best treatment I've ever had for massage and hijama. 10/10 experience from the friendly atmosphere to exceptional treatment."
+              </div>
+              <div class="review-author">- Jumah I., Professional Athlete</div>
+            </div>
+            <div class="review-slide">
+              <div class="review-content">
+                "I have used CHC multiple times. There is not a single fault. <strong>Exceptional Service</strong> time and time again."
+              </div>
+              <div class="review-author">- Sam H., Professional Sports Person</div>
+            </div>
+            <div class="review-slide">
+              <div class="review-content">
+                "I was skeptical at first, but the results speak for themselves. My migraines have reduced significantly, and I feel more energized."
+              </div>
+              <div class="review-author">- Health Enthusiast</div>
+            </div>
+          </div>
+        </div>
+        <div class="reviews-carousel-nav next" onclick="moveReviewsCarousel(1)">
+          <i class="fas fa-chevron-right"></i>
+        </div>
+      </div>
+      <div class="reviews-dots" id="reviewsDots"></div>
+      <a href="/booking" class="cta-booking">Book an Appointment</a>
+    </section>
+
     <!-- FOOTER -->
     {% include 'partials/footer.html' %}
   </div>
 
-  <!-- ========== SCROLL FADE SCRIPT ========== -->
+  <!-- ========== SCRIPTS ========== -->
   <script>
+    // Fade-in animation
     const fadeEls = document.querySelectorAll('.fade-slide');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -355,6 +655,49 @@ Main Features:
     }, { threshold: 0.2 });
 
     fadeEls.forEach(el => observer.observe(el));
+
+    // Reviews Carousel
+    let reviewsIndex = 0;
+    const reviewsCarousel = document.getElementById('reviewsCarouselTrack');
+    const reviewSlides = reviewsCarousel.querySelectorAll('.review-slide');
+    const reviewsDotsContainer = document.getElementById('reviewsDots');
+
+    // Create dots for reviews
+    reviewSlides.forEach((slide, index) => {
+      const dot = document.createElement('div');
+      dot.className = 'reviews-dot';
+      if (index === 0) dot.classList.add('active');
+      dot.onclick = () => goToReview(index);
+      reviewsDotsContainer.appendChild(dot);
+    });
+
+    function moveReviewsCarousel(direction) {
+      reviewsIndex += direction;
+      
+      if (reviewsIndex < 0) reviewsIndex = reviewSlides.length - 1;
+      if (reviewsIndex >= reviewSlides.length) reviewsIndex = 0;
+      
+      updateReviewsCarousel();
+    }
+
+    function goToReview(index) {
+      reviewsIndex = index;
+      updateReviewsCarousel();
+    }
+
+    function updateReviewsCarousel() {
+      reviewsCarousel.style.transform = `translateX(-${reviewsIndex * 100}%)`;
+      
+      // Update dots
+      document.querySelectorAll('.reviews-dot').forEach((dot, index) => {
+        dot.classList.toggle('active', index === reviewsIndex);
+      });
+    }
+
+    // Auto-advance reviews every 6 seconds
+    setInterval(() => {
+      moveReviewsCarousel(1);
+    }, 6000);
   </script>
 </body>
 </html>
