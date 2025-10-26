@@ -160,6 +160,85 @@ Main Features:
       to { transform: translateX(-50%); }
     }
 
+    /* ========== STATS SECTION ========== */
+    .stats-section {
+      background: #fff;
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    .stats-header {
+      margin-bottom: 20px;
+      font-size: 1rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #666;
+    }
+
+    .stats-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 60px;
+      font-weight: 700;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .stat-item {
+      padding: 30px;
+    }
+
+    .stat-number {
+      font-size: clamp(4rem, 10vw, 6rem);
+      font-weight: 700;
+      color: #2d5f3f;
+      margin-bottom: 20px;
+      line-height: 1;
+    }
+
+    .stat-description {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .stat-description strong {
+      font-weight: 700;
+      color: #000;
+    }
+
+    /* ========== IMAGE DIVIDER ========== */
+    .image-divider {
+      width: 100%;
+      height: 500px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+
+    .image-divider::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.2);
+    }
+
+    @media (max-width: 768px) {
+      .image-divider {
+        height: 300px;
+      }
+    }
+
+
     /* ========== SERVICES CAROUSEL ========== */
     .services-carousel {
       text-align: center;
@@ -331,128 +410,67 @@ Main Features:
       transform: translateY(-3px);
     }
 
-    /* ========== REVIEWS CAROUSEL ========== */
-    .reviews-carousel {
-      background: #f8f9fa;
+    /* ========== LEARN MORE CTA ========== */
+    .learn-more-cta {
       text-align: center;
-      position: relative;
-      padding: 80px 20px;
-    }
-
-    .reviews-title {
-      font-size: clamp(2rem, 5vw, 3rem);
-      margin-bottom: 60px;
-      font-weight: 700;
-    }
-
-    .reviews-carousel-container {
-      position: relative;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 100px;
-    }
-
-    .reviews-carousel-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 60px;
-      height: 60px;
-      background: transparent;
-      border: 2px solid #333;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 10;
-      transition: all 0.3s;
-      font-size: 1.5rem;
-    }
-
-    .reviews-carousel-nav:hover {
-      background: #333;
-      color: #fff;
-    }
-
-    .reviews-carousel-nav.prev { left: 10px; }
-    .reviews-carousel-nav.next { right: 10px; }
-
-    .reviews-carousel-wrapper {
-      overflow: hidden;
-    }
-
-    .reviews-carousel-track {
-      display: flex;
-      transition: transform 0.5s ease;
-    }
-
-    .review-slide {
-      min-width: 100%;
       padding: 40px 20px;
     }
 
-    .review-content {
-      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-      line-height: 1.8;
-      color: #333;
-      margin-bottom: 30px;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .review-content strong {
-      font-weight: 700;
-      color: #000;
-    }
-
-    .review-author {
-      font-size: 1.1rem;
-      color: #666;
-      font-style: italic;
-    }
-
-    .reviews-dots {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 40px;
-    }
-
-    .reviews-dot {
-      width: 12px;
-      height: 12px;
-      background: #ccc;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .reviews-dot.active {
-      background: #333;
-      width: 35px;
-      border-radius: 6px;
-    }
-
-    .cta-booking {
+    .learn-more-button {
       display: inline-block;
-      margin-top: 40px;
       padding: 15px 40px;
-      background: #000;
+      background: #667eea;
       color: #fff;
       border-radius: 50px;
       font-weight: 600;
+      font-size: 1.1rem;
       transition: all 0.3s;
-      border: 2px solid #000;
+      border: 2px solid #667eea;
       text-transform: uppercase;
       letter-spacing: 1px;
+      cursor: pointer;
     }
 
-    .cta-booking:hover {
+    .learn-more-button:hover {
       background: transparent;
-      color: #000;
+      color: #667eea;
       transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    /* ========== WHATSAPP BUTTON ========== */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #25D366;
+      color: #fff;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+      z-index: 1000;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+    }
+
+    @media (max-width: 768px) {
+      .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 25px;
+        bottom: 20px;
+        right: 20px;
+      }
     }
 
     /* ========== FOOTER ========== */
@@ -553,6 +571,42 @@ Main Features:
       </div>
     </section>
 
+    <!-- IMAGE SECTION -->
+    <section class="section" style="padding: 0; grid-column: 1 / 13;">
+      <img src="{{ url_for('static', filename='images/apparatus.jpeg') }}" alt="Cupping Apparatus" style="width: 100%; height: 500px; object-fit: cover; display: block;">
+    </section>
+
+    <!-- STATS SECTION -->
+    <section class="section stats-section fade-slide">
+      <div class="stats-header">HEALING IN NUMBERS</div>
+      <h2 class="stats-title">Unlocking the Power of Hijama</h2>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number" data-target="95">0</div>
+          <div class="stat-description">
+            <strong>95% of our patients</strong> report noticeable relief after just one Hijama session—whether from migraines, fatigue, or chronic pain.
+          </div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="13">0</div>
+          <div class="stat-description">
+            <strong>13 Sunnah-recommended points</strong> are used in our practice to align with Prophetic medicine and maximize spiritual and physical healing.
+          </div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="5000">0</div>
+          <div class="stat-description">
+            <strong>Over 5000+ successful treatments</strong> performed with professional care and proven results for our community.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMAGE SECTION 2 -->
+    <section class="section" style="padding: 0; grid-column: 1 / 13;">
+      <img src="{{ url_for('static', filename='images/frontdesk.jpeg') }}" alt="Front Desk" style="width: 100%; height: 500px; object-fit: cover; display: block;">
+    </section>
+
     <!-- SERVICES -->
     <section class="section cards fade-slide" id="services">
       <h2 class="services_title">Our Services</h2>
@@ -585,8 +639,17 @@ Main Features:
           </div>
         </div>
       </div>
+      
+      <!-- LEARN MORE CTA -->
+      <div class="learn-more-cta">
+        <a href="/services" class="learn-more-button">Learn More About Our Services</a>
+      </div>
     </section>
 
+    <!-- IMAGE SECTION 3 -->
+    <section class="section" style="padding: 0; grid-column: 1 / 13;">
+      <img src="{{ url_for('static', filename='images/male_room.jpeg') }}" alt="Male Treatment Room" style="width: 100%; height: 500px; object-fit: cover; display: block;">
+    </section>
 
     <!-- REVIEWS CAROUSEL -->
     <section class="section reviews-carousel fade-slide">
@@ -640,6 +703,11 @@ Main Features:
     <!-- FOOTER -->
     {% include 'partials/footer.html' %}
   </div>
+
+  <!-- WHATSAPP FLOATING BUTTON -->
+  <a href="https://wa.me/447917781447?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment" target="_blank" class="whatsapp-float" aria-label="Contact us on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
 
   <!-- ========== SCRIPTS ========== -->
   <script>
@@ -698,6 +766,44 @@ Main Features:
     setInterval(() => {
       moveReviewsCarousel(1);
     }, 6000);
+
+    // Animated Number Counting
+    function animateNumber(element) {
+      const target = parseInt(element.getAttribute('data-target'));
+      const duration = 2000; // 2 seconds
+      const increment = target / (duration / 16); // 60fps
+      let current = 0;
+
+      const updateNumber = () => {
+        current += increment;
+        if (current < target) {
+          element.textContent = Math.floor(current) + (target >= 1000 ? '+' : '%');
+          requestAnimationFrame(updateNumber);
+        } else {
+          element.textContent = target + (target >= 1000 ? '+' : target === 13 ? '+' : '%');
+        }
+      };
+
+      updateNumber();
+    }
+
+    // Trigger counting animation when stats section is visible
+    const statsObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const statNumbers = entry.target.querySelectorAll('.stat-number');
+          statNumbers.forEach((num, index) => {
+            setTimeout(() => animateNumber(num), index * 200);
+          });
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    const statsSection = document.querySelector('.stats-section');
+    if (statsSection) {
+      statsObserver.observe(statsSection);
+    }
   </script>
 </body>
 </html>

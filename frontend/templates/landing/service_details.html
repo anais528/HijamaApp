@@ -449,6 +449,41 @@
       padding-top: 20px;
     }
 
+    /* ========== WHATSAPP BUTTON ========== */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #25D366;
+      color: #fff;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+      z-index: 1000;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+    }
+
+    @media (max-width: 768px) {
+      .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 25px;
+        bottom: 20px;
+        right: 20px;
+      }
+    }
+
     /* ========== ANIMATION ========== */
     .fade-slide {
       opacity: 0;
@@ -759,6 +794,11 @@
     <!-- FOOTER -->
     {% include 'partials/footer.html' %}
   </div>
+
+  <!-- WHATSAPP FLOATING BUTTON -->
+  <a href="https://wa.me/447123456789?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment" target="_blank" class="whatsapp-float" aria-label="Contact us on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
 
   <!-- Scroll Fade Animation Script -->
   <script>
