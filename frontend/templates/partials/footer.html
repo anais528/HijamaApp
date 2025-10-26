@@ -1,32 +1,264 @@
 <!-- Reusable Footer Component -->
-<footer class="section footer fade-slide">
-  <div class="footer-grid">
-    <div class="footer-section">
-      <h4>Quick Links</h4>
-      <a href="/">Home</a>
-      <a href="/services">Services</a>
-      <a href="/benefits">Benefits</a>
-      <a href="/booking">Book Appointment</a>
-      <a href="/contact">Contact</a>
-      <a href="/faq">FAQs</a>
+
+<!-- Bootstrap and Font Awesome -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+/>
+
+<style>
+
+    /* Even/odd columns (these are commented out as in your SCSS) */
+    .col-md-4:nth-child(even) {
+      /* background: blue; */
+    }
+    .col-md-4:nth-child(odd) {
+      /* background: red; */
+    }
+
+
+
+    footer {
+      position: relative;
+      background: none;
+      margin-top: 100px;
+      overflow: hidden;
+    }
+
+    .footer-background-arc {
+      position: relative;
+      left: 50%;
+      top: 0;
+      top: 700px;            /* move the ellipse up to reveal more curve */
+      width: 160vw;           /* can be 140–200vw depending on how wide you want the cut */
+      height: 1300px;         
+      background: #212529;
+
+      border-top-left-radius: 200vw;
+      border-top-right-radius: 200vw;
+      transform: translateX(-50%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      padding-top: 250px; /* Adjust until your content sits right inside the arc */
+    }
+
+
+    .footer-column:not(:first-child) {
+      padding-top: 2rem;
+    }
+    @media (min-width: 768px) {
+      .footer-column:not(:first-child) {
+        padding-top: 0rem;
+      }
+    }
+
+    .footer-column {
+      text-align: center;
+    }
+    .footer-column .nav-item .nav-link {
+      padding: 0.1rem 0;
+    }
+
+    .nav-link {
+      color: #6c757d;
+    }
+
+    .footer-column .nav-item span.footer-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      text-transform: uppercase;
+    }
+    .footer-column .nav-item .fas {
+      margin-right: 0.5rem;
+    }
+    .footer-column ul {
+      display: inline-block;
+    }
+    @media (min-width: 768px) {
+      .footer-column ul {
+        text-align: left;
+      }
+    }
+
+    ul.social-buttons {
+      margin-bottom: 0;
+    }
+
+    footer a:hover,
+    footer .nav-link:hover,
+    footer .quick-links a:hover,
+    footer a:active,
+    footer a:focus {
+      color: #2c668e;
+      transition: color 0.3s ease; /* smooth color transition */
+    }
+
+    footer .social-buttons a:any-link {
+      background-color: #2c668e;
+    }
+
+    footer .social-buttons a:hover {
+      background-color: #122a3a;
+    }
+
+
+    footer .col-md-4 box .list-inline quick-links .list-inline-item{
+      background-color: #2c668e;
+    }
+
+
+    ul.social-buttons li a {
+      font-size: 20px;
+      line-height: 40px;
+      display: block;
+      width: 40px;
+      height: 40px;
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      transition: all 0.3s;
+      color: #fff;
+      border-radius: 100%;
+      outline: 0;
+      background-color: #1a1d20;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    footer .quick-links {
+      font-size: 90%;
+      line-height: 40px;
+      margin-bottom: 0;
+      text-transform: none;
+      font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    .copyright {
+      color: white;
+    }
+
+    .fa-ellipsis-h {
+      color: white;
+      padding: 2rem 0;
+    }
+
+    /* Footer Quick Links (white by default) */
+    footer .quick-links a {
+      color: #ffffff;       
+      text-decoration: none;       /* makes normal state white */
+      transition: color 0.3s ease; /* smooth color transition */
+    }
+
+    .footer-title {
+      position: relative;
+      top: -20px;
+    }
+
+
+</style>
+
+
+<footer>
+  <div class="footer-background-arc">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 footer-column">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <span class="footer-title">Services</span>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/benefits">Benefits</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="/services">Plans & Prices</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/faq">Frequently asked questions</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-4 footer-column">
+        <ul class="nav flex-column">
+          <li class="nav-item"><span class="footer-title">Company</span></li>
+          <li class="nav-item"><a class="nav-link" href="#">About us</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="/booking">Book Appointment</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contact">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-4 footer-column">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <span class="footer-title">Contact & Support</span>
+          </li>
+          <li class="nav-item">
+            <span class="nav-link"
+              ><i class="fas fa-phone"></i> +44 1234 567891</span
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"
+              ><i class="fas fa-envelope"></i> info@coventryhijama.co.uk</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"
+              ><i class="fas fa-star"></i> Coventry, United Kingdom</a
+            >
+          </li>
+        </ul>
+      </div>
     </div>
 
-    <div class="footer-section">
-      <h4>Contact</h4>
-      <p>Coventry, United Kingdom</p>
-      <p>+44 1234 567890</p>
-      <p>info@coventryhijama.co.uk</p>
-    </div>
+    <div class="text-center"><i class="fas fa-ellipsis-h"></i></div>
 
-    <div class="footer-section">
-      <h4>Follow Us</h4>
-      <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
-      <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
-      <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+    <div class="row text-center">
+      <div class="col-md-4 box">
+        <span class="copyright quick-links">
+          Copyright © CoventryHijamaClinic
+          <script>
+            document.write(new Date().getFullYear())
+          </script>
+        </span>
+      </div>
+
+      <div class="col-md-4 box">
+        <ul class="list-inline social-buttons">
+          <li class="list-inline-item">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </li>
+          <li class="list-inline-item">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+          </li>
+          <li class="list-inline-item">
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-4 box">
+        <ul class="list-inline quick-links">
+          <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+          <li class="list-inline-item"><a href="#">Terms of Use</a></li>
+        </ul>
+      </div>
     </div>
   </div>
-
-  <div class="footer-bottom">
-    &copy; 2025 Coventry Hijama Clinic. All rights reserved.
   </div>
 </footer>
+
