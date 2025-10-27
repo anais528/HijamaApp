@@ -28,9 +28,7 @@ class Appointment(db.Model):
     appointment_time = db.Column(db.DateTime, nullable=False)
     end_time = db.Column(db.DateTime, nullable=False)  # new end time calculated from duration
     status = db.Column(db.String(50), default='booked')
-    payment = db.Column(db.Float)
     notes = db.Column(db.Text)
-     
     
     client = db.relationship('Client', back_populates='appointments')
     staff = db.relationship('Staff', back_populates='appointments')
@@ -52,7 +50,6 @@ class Service(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     duration = db.Column(db.Interval, nullable=False)  # duration stored as interval
-    price = db.Column(db.Float, nullable=False)
 
 
 class RoundRobinTracker(db.Model):

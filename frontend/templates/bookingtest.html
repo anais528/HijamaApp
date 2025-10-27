@@ -1,129 +1,38 @@
 <!doctype html>
 <html>
 <head>
-  <title>Book Appointment</title>
-  <style>
-    #availableSlots button.selected {
-      background-color: #4CAF50;
-      color: white;
-    }
-    #availableSlots button {
-      margin: 2px;
-      padding: 5px 10px;
-      cursor: pointer;
-    }
-    #priceBox {
-      font-weight: bold;
-      margin: 12px 0;
-    }
-  </style>
+    <title>Book Appointment</title>
 </head>
 <body>
-  <h1>Book An Appointment</h1>
+    <h1>Book An Appointment</h1>
 
-  <form method="post">
-    Name: <input type="text" name="name" required><br>
-    Contact Info: <input type="email" name="contact_info" required><br>
-
-    Gender:
-    <select name="gender" id="gender" required onchange="fetchSlots()">
-      <option value="">Select gender</option>
-      <option value="male">Male</option>
-      <option value="female">Female</option>
-    </select><br>
-
-    Services (choose one or more): <br>
-    {% for service in services %}
-      <label>
-        <input type="checkbox" name="services" value="{{ service.id }}" data-price="{{ service.price }}" onchange="fetchSlots(); updatePrice()">
-        {{ service.name }} ({{ service.duration }}) - £{{ "%.2f"|format(service.price) }}
-      </label><br>
-    {% endfor %}
-
-    <div id="priceBox">
-      Total: £<span id="service_total">0.00</span>
-    </div>
-
-    Date:
-    <input type="date" id="date" name="date" required onchange="fetchSlots()"><br>
-
-    <div id="availableSlots"></div>
-
-    <!-- Hidden field for selected appointment time ISO -->
-    <input type="hidden" id="appointment_time" name="appointment_time" required>
-
-    <button type="submit">Book</button>
-  </form>
-
-  {% with messages = get_flashed_messages() %}
-    {% if messages %}
-      <ul>
-        {% for message in messages %}
-          <li>{{ message }}</li>
+    <form method="post">
+        Name: <input type="text" name="name" required><br>
+        Contact Info: <input type="email" name="contact_info" required><br>
+        Gender: 
+        <select name="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select><br>
+    
+        Services (choose one or more): <br>
+        {% for service in services %}
+          <input type="checkbox" name="services" value="{{ service.id }}"> {{ service.name }} ({{ service.duration }}) <br>
         {% endfor %}
-      </ul>
-    {% endif %}
-  {% endwith %}
+    
+        Appointment Time: <input type="datetime-local" name="appointment_time" required><br>
+        <button type="submit">Book</button>
+    </form>    
 
-  <script>
-    async function fetchSlots() {
-      const gender = document.getElementById('gender').value;
-      const date = document.getElementById('date').value;
-      const servicesChecked = document.querySelectorAll('input[name="services"]:checked');
-      const services = Array.from(servicesChecked).map(el => el.value).join(',');
 
-      const container = document.getElementById('availableSlots');
-      container.innerHTML = '';
-      document.getElementById('appointment_time').value = '';
-
-      if (!gender || !date || !services) {
-        container.textContent = 'Please select gender, date, and at least one service.';
-        return;
-      }
-
-      try {
-        const response = await fetch(`/api/available-slots?gender=${gender}&date=${date}&services=${services}`);
-        if (!response.ok) throw new Error('Network response was not ok');
-        const slots = await response.json();
-
-        if (slots.length === 0) {
-          container.textContent = 'No available slots on this date.';
-          return;
-        }
-
-        slots.forEach(slot => {
-          const btn = document.createElement('button');
-          btn.type = 'button';
-          const dt = new Date(slot);
-          btn.textContent = dt.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-          btn.onclick = () => {
-            document.getElementById('appointment_time').value = slot;
-            // Highlight selected slot
-            Array.from(container.children).forEach(c => c.classList.remove('selected'));
-            btn.classList.add('selected');
-          };
-          container.appendChild(btn);
-        });
-      } catch (error) {
-        container.textContent = 'Failed to load available slots.';
-        console.error(error);
-      }
-    }
-
-    // Price Calculation
-    function updatePrice() {
-      const serviceBoxes = document.querySelectorAll('input[name="services"]:checked');
-      let total = 0;
-      serviceBoxes.forEach(cb => {
-        total += parseFloat(cb.getAttribute('data-price'));
-      });
-      document.getElementById('service_total').textContent = total.toFixed(2);
-    }
-    // Initial price render and listeners
-    document.querySelectorAll('input[name="services"]').forEach(cb => {
-      cb.addEventListener('change', updatePrice);
-    });
-    updatePrice();
-  </script>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
 </body>
 </html>

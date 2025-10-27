@@ -23,6 +23,11 @@ analytics_data = {
     'popular_services': []
 }
 
+@views.route('/batoulworkspace')
+def batoul():
+    return render_template('batoul.html')
+
+
 # ============================================
 # PUBLIC ROUTES
 # ============================================
@@ -31,68 +36,6 @@ analytics_data = {
 def home():
     """Main homepage - renders landing page"""
     return render_template('landing/landingpage.html')
-
-
-@views.route('/api/available-slots', methods=['GET'])
-def available_slots():
-    gender = request.args.get('gender')
-    date_str = request.args.get('date')
-    services_str = request.args.get('services', '')
-
-    if not gender or not date_str or not services_str:
-        return jsonify({'error': 'Missing required parameters'}), 400
-
-    try:
-        query_date = datetime.strptime(date_str, '%Y-%m-%d').date()
-    except ValueError:
-        return jsonify({'error': 'Invalid date format'}), 400
-
-    try:
-        service_ids = [int(sid) for sid in services_str.split(',') if sid]
-    except ValueError:
-        return jsonify({'error': 'Invalid service IDs'}), 400
-
-    total_duration = timedelta()
-    for sid in service_ids:
-        service = Service.query.get(sid)
-        if not service:
-            return jsonify({'error': f'Service ID {sid} not found'}), 404
-        total_duration += service.duration
-
-    weekday = query_date.weekday()
-    staff_list = Staff.query.filter_by(gender=gender).all()
-    all_available_slots = set()
-
-    for staff in staff_list:
-        availabilities = StaffAvailability.query.filter_by(staff_id=staff.id, weekday=weekday).all()
-        existing_appts = Appointment.query.filter(
-            Appointment.staff_id == staff.id,
-            Appointment.appointment_time >= datetime.combine(query_date, datetime.min.time()),
-            Appointment.appointment_time < datetime.combine(query_date + timedelta(days=1), datetime.min.time())
-        ).all()
-
-        busy_intervals = [(appt.appointment_time.time(), appt.end_time.time()) for appt in existing_appts]
-
-        for avail in availabilities:
-            start_dt = datetime.combine(query_date, avail.start_time)
-            end_dt = datetime.combine(query_date, avail.end_time)
-
-            slot_start = start_dt
-            while (slot_start + total_duration) <= end_dt:
-                slot_end = slot_start + total_duration
-                overlap = False
-                for busy_start, busy_end in busy_intervals:
-                    busy_start_dt = datetime.combine(query_date, busy_start)
-                    busy_end_dt = datetime.combine(query_date, busy_end)
-                    if slot_start < busy_end_dt and busy_start_dt < slot_end:
-                        overlap = True
-                        break
-                if not overlap:
-                    all_available_slots.add(slot_start.isoformat())
-                slot_start += timedelta(minutes=30)  # Adjust step as needed
-
-    result = sorted(all_available_slots)
-    return jsonify(result)
 
 
 def get_available_staff(gender, appointment_time, total_duration):
@@ -178,7 +121,6 @@ def book_appointment():
 
         staff_id = available_staff_member.id
         end_time = appointment_time + total_duration
-        total_price = sum(Service.query.get(int(s_id)).price for s_id in service_ids)
 
         # Create appointment
         appt = Appointment(
@@ -186,8 +128,7 @@ def book_appointment():
             staff_id=staff_id,
             appointment_time=appointment_time,
             end_time=end_time,
-            status='booked',
-            payment=total_price
+            status='booked'
         )
         db.session.add(appt)
         db.session.commit()
@@ -197,60 +138,6 @@ def book_appointment():
     return render_template('bookingtest.html', services=services)
 
 
-@views.route('/staff_dashboard_data')
-def staff_dashboard_data():
-    appointments = db.session.query(
-        Appointment.id,
-        Client.name.label('client_name'),
-        Client.contact_info,
-        Client.gender.label('client_gender'),
-        Staff.name.label('staff_name'),
-        Staff.gender.label('staff_gender'),
-        Appointment.appointment_time,
-        Appointment.end_time,
-        Appointment.status,
-        Appointment.payment,
-        Appointment.notes
-    ).join(Client).join(Staff).order_by(Appointment.appointment_time).all()
-
-    result = [{
-        'id': a.id,
-        'client_name': a.client_name,
-        'contact_info': a.contact_info,
-        'client_gender': a.client_gender,
-        'staff_name': a.staff_name,
-        'staff_gender': a.staff_gender,
-        'appointment_time': a.appointment_time.isoformat(),
-        'end_time': a.end_time.isoformat(),
-        'status': a.status,
-        'payment' : a.payment,
-        'notes': a.notes or ''
-    } for a in appointments]
-
-    return jsonify(result)
-
-
-@views.route('/admin/dashboard')
-def admin_dashboard():
-    """Admin dashboard"""
-# Query all appointments with related staff and client info
-    appointments = db.session.query(
-        Appointment.id,
-        Client.name.label('client_name'),
-        Client.contact_info,
-        Client.gender.label('client_gender'),
-        Staff.name.label('staff_name'),
-        Staff.gender.label('staff_gender'),
-        Appointment.appointment_time,
-        Appointment.end_time,
-        Appointment.status,
-        Appointment.payment,
-        Appointment.notes
-    ).join(Client, Appointment.client_id == Client.id
-    ).join(Staff, Appointment.staff_id == Staff.id
-    ).order_by(Appointment.appointment_time).all()
-    
-    return render_template('admin/admin_dashboard.html', appointments=appointments)
 
 
 @views.route('/landingpage')
@@ -297,6 +184,12 @@ def service_details():
 def admin_login():
     """Admin login page"""
     return render_template('admin/admin_login.html')
+
+@views.route('/admin/dashboard')
+def admin_dashboard():
+    """Admin dashboard"""
+    # TODO: Add authentication check
+    return render_template('admin/admin_dashboard.html')
 
 @views.route('/admin/bookings')
 def admin_bookings():
