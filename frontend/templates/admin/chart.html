@@ -1,0 +1,52 @@
+<canvas id="bookingsByService" width="320" height="320"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const resp = {
+    slices: [
+      { label: 'Hijama', value: 42 },
+      { label: 'Massage', value: 31 },
+      { label: 'Consultation', value: 18 },
+      { label: 'Products', value: 7 }
+    ],
+    total: 98
+  };
+
+  const labels = resp.slices.map(s => s.label);
+  const values = resp.slices.map(s => s.value);
+
+  const ctx = document.getElementById('bookingsByService').getContext('2d');
+  const colors = ['#0F1C4D','#3C4FA3','#93C5FD','#34D399','#22D3EE','#F59E0B'];
+
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels,
+      datasets: [{
+        data: values,
+        backgroundColor: labels.map((_, i) => colors[i % colors.length]),
+        borderColor: '#fff',
+        borderWidth: 10,
+        spacing: 6,
+        cutout: '58%'
+      }]
+    },
+    options: {
+      plugins: { legend: { display: false } }
+    },
+    plugins: [{
+      id: 'centerTotal',
+      afterDraw(chart) {
+        const {ctx, chartArea} = chart;
+        const x = (chartArea.left + chartArea.right) / 2;
+        const y = (chartArea.top + chartArea.bottom) / 2;
+        ctx.save();
+        ctx.fillStyle = '#111827';
+        ctx.font = '700 26px Inter, system-ui, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(resp.total.toString(), x, y);
+        ctx.restore();
+      }
+    }]
+  });
+</script>
