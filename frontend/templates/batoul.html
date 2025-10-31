@@ -384,6 +384,10 @@
                 
 
 
+
+
+
+
     /*-------------------------Our services -------------------------*/
 
     .cards {
@@ -393,7 +397,6 @@
       justify-content: center;
       align-items: center;
       border: none;
-
     }
 
     .services_title {
@@ -421,8 +424,8 @@
   --gap: 25px;
 
   /* Colors */
-  --grey: #e5e7eb;
-  --dark: #cbd2dc;
+  --grey: #e1eaf6a3;
+  --dark: #e1eaf6a3;
   --ink: #0b0b0c;
   --ring: #cfd5df;
   --accent: #7aa3ff;
@@ -441,15 +444,27 @@
   gap: var(--gap);
   align-items: stretch;
   transition: grid-template-columns var(--t) var(--ease);
+  padding-bottom: 20px;
 }
 .cards-blank > .card{
   height: var(--h);
   background: var(--dark);
   border-radius: 999px;
   transition: background-color var(--t) var(--ease), border-radius var(--t) var(--ease);
+  padding-bottom: 20px;
+
+
 }
+
 /* always-expanded visual for edges */
-.card.big{ background: var(--grey); border-radius: 50px; }
+.card.big{ 
+  background: var(--grey); 
+  border-radius: 50px; }
+
+  
+  .card.thin {
+  
+  }
 
 /* middle expansion (only hovered column grows; edges shrink slightly) */
 .cards-blank:has(.thin:nth-child(2):hover){
@@ -472,22 +487,19 @@
   .cards-blank > .card{ transition: none; }
 }
 
-/* =========================
-   Card skin (outer big cards)
-   ========================= */
-
 
 /* inner content card */
 .svc-card{
   color: var(--ink);
   border-radius: 50px;
-  padding: clamp(16px, 3vw, 40px);
+  padding: 50px;
   display: grid;
   grid-template-rows: auto 1fr auto;  /* header, title, footer */
   gap: clamp(12px, 2vw, 20px);
   height: 100%;
+  overflow: hidden;
 }
-/* header */
+
 .svc-card__head{
   display:flex;
   align-items:center;
@@ -507,42 +519,48 @@
   font-weight: 500;
   margin-top: 30px;
   margin-left: 25px;
+  margin-bottom: 10px;
 }
 
+/* TITLE */
 
-/* title and footer */
 .svc-card__title{
   margin: 0;
-  font: 600 clamp(1.6rem, 3.6vw, 2.4rem)/1.08 Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  letter-spacing: 0.005em;
+  font-weight: 400;
+  font-size: 40px;
+  text-align: left;
+  margin-left: 30px;
+
 }
+
+.svc-card__summary{
+  text-align: left;
+  margin-left: 30px;
+  width: 300px;
+}
+
 .svc-card__foot{
   display:flex;
   align-items:end;
-  justify-content:space-between;
 }
+
 .svc-card__num{
-  font-weight: 800;
-  font-size: clamp(4rem, 12vw, 9.5rem);
-  line-height: 0.85;
-  letter-spacing: -0.01em;
+  font-weight: 300;
+
+  font-size: clamp(8rem, 20vw, 16rem);
 }
+
 .plus{
   inline-size: 56px;
   aspect-ratio: 1;
   border-radius: 999px;
-  border: 2px solid var(--ring);
-  background:#fff;
-  color: var(--ink);
-  font-weight: 700;
-  font-size: 1.25rem;
+  border: 0.5px solid rgba(0, 0, 0, 0.379);
+  color: rgba(0, 0, 0, 0.763);
+  font-weight: 300;
+  font-size: 3rem;
+  background-color: transparent;
 }
 
-/* hover polish */
-.card.big .svc-card:hover{
-  box-shadow: 0 6px 20px rgba(2,8,20,.08), 0 0 0 1px rgba(2,8,20,.05) inset;
-  transition: box-shadow 220ms ease;
-}
 
 /* =========================
    Arrow-only mode on edges
@@ -550,32 +568,72 @@
 /* FA icon wrapper (diagonal arrow) */
 .corner-ico{
   display:inline-grid;
-  place-items:center;
+  place-items: center;
+  font-size: 50px;
   width: 108px;
   height: 58px;
   color: var(--accent);
-  transform: rotate(45deg);
+  transform: rotate(225deg);
+  padding-top: 40px;
+
 }
-.corner-ico .fa{ font-size: 202px; line-height: 1; }
+
 
 /* default: edges are expanded, so show content and hide the standalone arrow */
 .card.big > .svc-card{ display: grid; }
-.card.big > .corner-ico{ display: none; }
+.card.big > .corner-ico{ display: none;   transform: rotate(45deg);
+  margin-top: 10px;
+  margin-left: 30px;}
+
 
 /* when any middle is expanded (edges shrink), switch edges to arrow-only */
-.cards-blank:has(.thin:hover) .big > .svc-card{ display: none; }
+.cards-blank:has(.thin:hover) .big > .svc-card{ 
+  display: none;
+}
 .cards-blank:has(.thin:hover) .big > .corner-ico{ display: inline-grid; }
+
+
+.card.thin > .corner-ico{
+  transform: rotate(45deg);
+  margin-top: 10px;
+  margin-left: 30px;
+}
+
+.cards-blank .thin > .svc-card{ 
+  display: none;
+}
+
+.cards-blank .thin:hover > .svc-card{ 
+  display: grid;
+}
+
+.cards-blank .thin:hover > .corner-ico{ display: none; }
+
+
 
 /* keep content visible if an edge itself is hovered */
 .cards-blank:has(.big:first-child:hover) .big:first-child > .svc-card,
 .cards-blank:has(.big:last-child:hover)  .big:last-child  > .svc-card{ display: grid; }
 .cards-blank:has(.big:first-child:hover) .big:first-child > .corner-ico,
-.cards-blank:has(.big:last-child:hover)  .big:last-child  > .corner-ico{ display: none; }
+.cards-blank:has(.big:last-child:hover)  .big:last-child  > .corner-ico{ 
+  display: none; 
+}
 
 /* reduced motion: extra guard */
 @media (prefers-reduced-motion: reduce){
   .card.big .svc-card{ transition: none; }
+  .card.thin .svc-card{ transition: none; }
 }
+
+
+
+
+#image-one {
+  background-image: url('image_one.png');
+}
+
+
+
 
 
 /*-----------------------------------------------------------------------------*/
@@ -732,7 +790,7 @@
     height: 5rem; /* Bigger (e.g., 56px) */
     border-radius: 50%;
     border: none;
-    background: #ffffff; /* Replaced var(--bg-light) */
+    background: #99c6f130; /* Replaced var(--bg-light) */
     color: #666; /* Replaced var(--text-light) */
     font-size: 2rem; /* Icon size */
     font-weight: 200;
@@ -745,7 +803,7 @@
 }
 
 .slider-arrow:hover {
-    background: #f5f5f5;
+    background: #84abd05b;
     color: #1a1a1a; /* Replaced var(--text-dark) */
 }
 .slider-arrow:disabled {
@@ -858,7 +916,7 @@
     .appointment {
       padding: 12px 20px;
       border-radius: 50px;
-      border: 1px solid #000;
+      border: 1px solid #99c6f130;
       background: transparent;
       cursor: pointer;
       transition: 0.3s;
@@ -867,7 +925,7 @@
 
     }
 
-    .appointment:hover { background: #000; color: #fff; transform: translateY(-3px); }
+    .appointment:hover { background: #99c6f130; color: #fff; transform: translateY(-3px); }
 
     .footer {
       grid-column: 1 / 13;
@@ -2044,6 +2102,9 @@
         <h2 class="services_title"> Our Services </h2>
 
 
+
+
+
 <section class="services" aria-label="Services layout">
     <div class="cards-blank">
       <!-- Left expanded card -->
@@ -2063,7 +2124,8 @@
             </span>
 
           </header>
-          <h3 id="svc1-title" class="svc-card__title">Hijama<br>(Cupping Therapy)</h3>
+          <h3 id="svc1-title" class="svc-card__title">Hijama (Cupping <br>Therapy)</h3>
+          <p class="svc-card__summary"> Detoxify your body, improve circulation, and relieve pain naturally through traditional cupping techniques.</p>
           <footer class="svc-card__foot">
             <span class="svc-card__num">01</span>
             <button class="plus" type="button" aria-label="Open Hijama card">+</button>
@@ -2072,9 +2134,73 @@
       </div>
   
       <!-- Middle placeholders -->
-      <div class="card thin"></div>
-      <div class="card thin"></div>
-      <div class="card thin"></div>
+      <div class="card thin">
+
+        <span class="corner-ico" aria-hidden="true">
+          <i class="fa-solid fa-angles-up" aria-hidden="true"></i>
+        </span>
+
+
+        <article class="svc-card" aria-labelledby="svc3-title">
+          <header class="svc-card__head">
+              <span class="badge">IMPROVEMENT</span>
+              <span class="corner-ico" aria-hidden="true">
+                  <i class="fa-solid fa-angles-up" aria-hidden="true"></i>
+              </span>
+          </header>
+          <h3 id="svc3-title" class="svc-card__title">Pain<br>Relief</h3>
+          <p class="svc-card__summary"> Targeted therapies to alleviate chronic and acute pain, restoring comfort and mobility.</p>
+          <footer class="svc-card__foot">
+              <span class="svc-card__num">02</span>
+              <button class="plus" type="button" aria-label="Open Pain Relief card">+</button>
+          </footer>
+      </article>
+      </div>
+
+      <div class="card thin" id="image-one">
+
+        <span class="corner-ico" aria-hidden="true">
+          <i class="fa-solid fa-angles-up" aria-hidden="true"></i>
+        </span>
+
+        <article class="svc-card" aria-labelledby="svc3-title">
+          <header class="svc-card__head">
+              <span class="badge">IMPROVEMENT</span>
+              <span class="corner-ico" aria-hidden="true">
+                  <i class="fa-solid fa-angles-up" aria-hidden="true"></i>
+              </span>
+          </header>
+          <h3 id="svc3-title" class="svc-card__title">Sports Massage <br>for Success</h3>
+          <p class="svc-card__summary">Relieve tension, prevent injuries, and boost athletic performance through deep tissue massage</p>
+          <footer class="svc-card__foot">
+              <span class="svc-card__num">03</span>
+              <button class="plus" type="button" aria-label="Open Pain Relief card">+</button>
+          </footer>
+      </article>
+
+      </div>
+
+      <div class="card thin">
+
+        <span class="corner-ico" aria-hidden="true">
+          <i class="fa-solid fa-angles-up" aria-hidden="true"></i>
+        </span>
+
+        <article class="svc-card" aria-labelledby="svc3-title">
+            <header class="svc-card__head">
+                <span class="badge">IMPROVEMENT</span>
+                <span class="corner-ico" aria-hidden="true">
+                    <i class="fa-solid fa-angles-up" aria-hidden="true"></i>
+                </span>
+            </header>
+            <h3 id="svc3-title" class="svc-card__title">Dry <br>Cupping</h3>
+            <p class="svc-card__summary">Stimulate blood flow and reduce inflammation using suction therapy without incisions.</p>
+            <footer class="svc-card__foot">
+                <span class="svc-card__num">04</span>
+                <button class="plus" type="button" aria-label="Open Pain Relief card">+</button>
+            </footer>
+        </article>
+      </div>
   
       <!-- Right expanded card (content to add later) -->
       <div class="card big">
@@ -2082,9 +2208,28 @@
           <i class="fa-solid fa-angles-up" aria-hidden="true"></i>
         </span>
         <!-- Add article.svc-card here when ready -->
+        <article class="svc-card" aria-labelledby="svc1-title">
+          <header class="svc-card__head">
+            <span class="badge">ADVANTAGES</span>
+
+            <span class="corner-ico" aria-hidden="true">
+              <i class="fa-solid fa-angles-up" aria-hidden="true"></i>
+            </span>
+
+          </header>
+          <h3 id="svc1-title" class="svc-card__title">Recovery &<br> Rehabilitation</h3>
+          <p class="svc-card__summary"> Discover Tailored recovery programs for athletes and individuals seeking muscle and joint rehabilitation.</p>
+          <footer class="svc-card__foot">
+            <span class="svc-card__num">05</span>
+            <button class="plus" type="button" aria-label="Open Hijama card">+</button>
+          </footer>
+        </article>
       </div>
     </div>
   </section>
+
+
+
 
     </div>
 
