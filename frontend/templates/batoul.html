@@ -596,65 +596,259 @@
       border: none;
     }
 
-    .faq-section {
-      border-radius: 30px;
-      padding: clamp(30px, 4vw, 50px);
-      margin-bottom: 40px;
-      border-color: transparent;
-      padding-bottom: 0px;
-    }
+   /* ========== 1. BASE STYLES ========== */
+/* :root block removed as variables are now embedded */
 
-    .faq-section h2 {
-      font-size: clamp(1.8rem, 3vw, 2.5rem);
-      text-align: center;
-      margin-bottom: 40px;
-      color: #1a1a1a;
-      font-weight: 600;
-    }
+/* ========== 2. FAQ SECTION WRAPPER ========== */
+.faq-section {
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    border-radius: 20px;
+    padding: clamp(1.5rem, 5vw, 4rem);
+}
 
-    .faq-item {
-      background: white;
-      padding: 25px;
-      border-radius: 15px;
-      margin-bottom: 15px;
-      transition: 0.3s ease;
-      border-left: 4px solid transparent;
-    }
+/* ========== 3. HEADER AREA ========== */
+.faq-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+}
 
-    .faq-item:hover {
-      background: #e9ecef;
-      border-left-color: #7aa3ff;
-    }
+.faq-header h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0;
 
-    .faq-question {
-      font-size: 1.15rem;
-      font-weight: 600;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: #1a1a1a;
-    }
+}
 
-    .faq-question i {
-      color: #7aa3ff;
-    }
+.faq-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
 
-    .faq-answer {
-      color: #666;
-      line-height: 1.7;
-      padding-left: 30px;
-      text-align: left;
-    }
+.btn-icon {
+    width: 54px;
+    height: 54px;
+    color: #677086; /* Replaced var(--text-light) */
+    border: none;
+    background-color: transparent;
+    font-size: 2rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s;
+}
+
+.btn-icon:hover {
+    background: #f5f5f5;
+    color: #1a1a1a; /* Replaced var(--text-dark) */
+}
+
+.btn-outline {
+    padding: 0.75rem 1.5rem;
+    border: 1px solid #e5e5e5; /* Replaced var(--border-color) */
+    background: #ffffff; /* Replaced var(--bg-light) */
+    color: #1a1a1a; /* Replaced var(--text-dark) */
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    margin-left: 0.5rem;
+}
+
+.btn-outline:hover {
+    background: #f5f5f5;
+    border-color: #ccc;
+}
+
+/* ========== 4. SLIDER / CONTENT AREA ========== */
+.faq-slider {
+    display: flex;
+    justify-content: space-between; /* Pushes content and arrows apart */
+    align-items: center;
+    gap: 1.5rem; /* Gap between slider content and arrows */
+    min-height: 200px;
+    position: relative; /* For absolute positioning of arrows if needed, but not here */
+    text-align: left;
+}
+
+.questions-slider-wrapper {
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.questions-slide-content {
+  position: relative;
+    /* Match the min-height of the .faq-slider */
+    min-height: 200px;
+    /* No transitions here, JS will control it */
+}
+
+.questions-slide {
+    width: 800px;
+    margin-left: 170px;
+    flex-shrink: 0;
+    padding: 0; /* Removed horizontal padding here for tighter fit */
+    box-sizing: border-box;
+    font-size: clamp(1.7rem, 2.5vw, 1.3rem); /* Slightly smaller font */
+    line-height: 1.6;
+    color: #677086; /* Replaced var(--text-dark) */
+    font-weight: 400;
+    
+    position: absolute;
+    top: 0;
+    opacity: 0.5; /* Hidden by default */
+    visibility: hidden;
+    transition: opacity 0.7s ease-in-out;
+}
+
+.questions-slide.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.questions-slide strong {
+    font-weight: 700;
+}
+
+/* --- New Arrows Wrapper --- */
+.slider-arrows-wrapper {
+    display: flex; /* Arrange arrows side-by-side */
+    gap: 0.5rem; /* Small gap between arrows */
+    flex-shrink: 0; /* Prevent wrapper from shrinking */
+    padding-right: 1rem; /* Adjust as needed for spacing from right edge */
+}
+
+.slider-arrow {
+    width: 5rem; /* Bigger (e.g., 56px) */
+    height: 5rem; /* Bigger (e.g., 56px) */
+    border-radius: 50%;
+    border: none;
+    background: #ffffff; /* Replaced var(--bg-light) */
+    color: #666; /* Replaced var(--text-light) */
+    font-size: 2rem; /* Icon size */
+    font-weight: 200;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s;
+    margin-right: 20px;
+}
+
+.slider-arrow:hover {
+    background: #f5f5f5;
+    color: #1a1a1a; /* Replaced var(--text-dark) */
+}
+.slider-arrow:disabled {
+    color: #e5e5e5; /* Replaced var(--border-color) */
+    cursor: not-allowed;
+    background: #fdfdfd;
+}
+
+/* ========== 5. TIMELINE / NAVIGATION (Nodes above text) ========== */
+.faq-timeline {
+    margin-top: 4rem;
+    position: relative;
+    padding: 0 1rem;
+}
+
+/* The main grey line */
+.faq-timeline::before {
+    content: '';
+    position: absolute;
+    /* Aligns with the center of the nodes (10px margin + 10px half-node) */
+    top: 1.1875rem; /* 19px */
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #e5e5e5; /* Replaced var(--border-color) */
+    z-index: 1;
+    width: 90%; 
+    margin: 0 auto;
+}
+
+.timeline-nav {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    z-index: 3;
+}
+
+.timeline-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex-basis: 0;
+    flex-grow: 1;
+    padding: 0 0.5rem;
+    cursor: pointer;
+    min-height: 80px; 
+}
+
+.question-text {
+    font-size: 1rem;
+    color: #666; /* Replaced var(--text-light) */
+    font-weight: 500;
+    /* Space between node and text */
+    margin-top: 1.25rem; /* 20px */
+    transition: all 0.3s;
+    text-align: left;
+}
+
+.node {
+    width: 30px;
+    height: 30px;
+    background: #e5e5e5; /* Replaced var(--border-color) */
+    border: none;
+    border-radius: 50%;
+    position: relative;
+    transition: all 0.3s;
+    /* Pushes node down from the top */
+    margin-top: 0.625rem; /* 10px */
+}
+
+/* --- Active & Hover States --- */
+
+.timeline-item.active .question-text {
+    color: #1a1a1a; /* Replaced var(--text-dark) */
+    font-weight: 700;
+}
+
+.timeline-item.active .node {
+    background: #6b7f93; /* Replaced var(--text-accent) */
+    box-shadow: 0 0 0 6px #dde3e9; /* Replaced var(--accent-bg) */
+    transform: scale(1.1);
+}
+
+.timeline-item:not(.active):hover .question-text {
+    color: #1a1a1a; /* Replaced var(--text-dark) */
+}
+
+.timeline-item:not(.active):hover .node {
+    background: #ccc;
+}
+
 
     .faq-cta {
       text-align: center;
       margin-top: 80px;
       padding: 60px 40px;
-      background: #efefef71;
+      background: white;
       backdrop-filter: blur(20px);
       border-radius: 40px;
-      border: 1px solid #c0c0c061;
     }
 
     .faq-cta h2 { font-size: 2.5rem; font-weight: 500; margin-bottom: 20px; text-align: center;
@@ -1266,6 +1460,9 @@
     .whatsapp-button:hover {
       transform: scale(1.1);
     }
+
+
+
 
 </style>
 
@@ -1913,82 +2110,81 @@
         </div>
       </div>
 
-      <section class="section faq-section fade-slide">
-        <h2>Frequently Asked Questions</h2>
-  
-        <div class="faq-item">
-          <div class="faq-question">
-            <i class="fas fa-question-circle"></i>
-            Is Hijama painful?
-          </div>
-          <div class="faq-answer">
-            Most clients report minimal discomfort during Hijama. The sensation is often described as a slight 
-            pinching feeling during incision, followed by relief as toxins are removed. We work at your comfort 
-            level throughout the procedure.
-          </div>
+
+      <section class="faq-section">
+        
+        <div class="faq-header">
+            <h1 style="text-align: left; font-weight: 500; font-size: 70px;">Frequently Asked <br> Questions</h1>
+            <div class="faq-controls">
+                <button class="btn-icon" id="play-btn" aria-label="Play slideshow">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button class="btn-icon" id="pause-btn" aria-label="Pause slideshow">
+                    <i class="fas fa-pause"></i>
+                </button>
+                <a href="#" class="carousel-button" style="font-size: 14px;">BOOK APPOINTMENT</a>
+            </div>
         </div>
-  
-        <div class="faq-item">
-          <div class="faq-question">
-            <i class="fas fa-question-circle"></i>
-            What's included in the infrared heat therapy?
-          </div>
-          <div class="faq-answer">
-            Infrared heat therapy is included in all Hijama packages to warm up the blood and body before treatment. 
-            This helps improve circulation, relaxes muscles, and prepares the body for optimal cupping results. 
-            The gentle heat penetrates deep into tissues for maximum therapeutic benefit.
-          </div>
+
+<div class="faq-slider">
+            <div class="questions-slider-wrapper">
+                <div class="questions-slider-content">
+                    <div class="questions-slide active">
+                        For general wellness, once every <strong style="color: #000;">4-6 weeks</strong> is common. For <strong style="color: #000;">injury or chronic pain</strong>, weekly or <strong style="color: #000;">bi-weekly sessions</strong> may be recommended initially.
+                    </div>
+                    <div class="questions-slide">
+                        Hijama, or cupping therapy, involves placing cups on the skin to create suction. This helps <strong style="color: #000;">improve blood flow</strong>, reduce inflammation, and promote cellular repair.
+                    </div>
+                    <div class="questions-slide">
+                        Side effects are minimal. You may experience <strong style="color: #000;">circular bruises</strong> (cup marks) which are temporary and fade within a few days to a week. They are generally not painful.
+                    </div>
+                    <div class="questions-slide">
+                        Yes, it's highly effective. By <strong style="color: #000;">releasing muscle tension</strong> and improving circulation to affected areas, it can significantly speed up recovery time and reduce pain.
+                    </div>
+                    <div class="questions-slide">
+                        A typical session lasts between <strong style="color: #000;">30 to 45 minutes</strong>, including consultation and the cupping procedure itself. Your first session may be slightly longer.
+                    </div>
+                </div>
+            </div>
+
+            <div class="slider-arrows-wrapper">
+                <button class="slider-arrow" id="prev-btn" aria-label="Previous question">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="slider-arrow" id="next-btn" aria-label="Next question">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
         </div>
-  
-        <div class="faq-item">
-          <div class="faq-question">
-            <i class="fas fa-question-circle"></i>
-            How often should I get treatment?
-          </div>
-          <div class="faq-answer">
-            Treatment frequency varies based on individual needs. For general wellness, monthly sessions are 
-            recommended. For specific conditions, more frequent sessions may be beneficial initially. We'll 
-            create a personalized schedule during your consultation.
-          </div>
-        </div>
-  
-        <div class="faq-item">
-          <div class="faq-question">
-            <i class="fas fa-question-circle"></i>
-            Can I combine Hijama with massage therapy?
-          </div>
-          <div class="faq-answer">
-            Yes! Many clients benefit from combining treatments. All our Hijama packages already include therapeutic 
-            massage. You can also book a separate massage session for additional relaxation and muscle relief. 
-            We can help you create a comprehensive treatment plan.
-          </div>
-        </div>
-  
-        <div class="faq-item">
-          <div class="faq-question">
-            <i class="fas fa-question-circle"></i>
-            Are there any side effects?
-          </div>
-          <div class="faq-answer">
-            Minor side effects may include temporary circular marks, slight soreness, or bruising at treatment 
-            sites. These typically fade within a few days to a week. Serious complications are rare when performed 
-            by trained practitioners with proper hygiene protocols.
-          </div>
-        </div>
-  
-        <div class="faq-item">
-          <div class="faq-question">
-            <i class="fas fa-question-circle"></i>
-            Who should avoid these treatments?
-          </div>
-          <div class="faq-answer">
-            Cupping therapy is not recommended for pregnant women, people with bleeding disorders, those on 
-            blood thinners, or individuals with skin infections at treatment sites. We conduct thorough 
-            consultations to ensure safety for all clients.
-          </div>
-        </div>
-      </section>
-  
+
+        
+
+<div class="faq-timeline">
+    <ol class="timeline-nav">
+        <li class="timeline-item active">
+            <span class="node"></span>
+            <span class="question-text">How often should I have treatment?</span>
+        </li>
+        <li class="timeline-item">
+            <span class="node"></span>
+            <span class="question-text">What is Hijama therapy and how does it work?</span>
+        </li>
+        <li class="timeline-item">
+            <span class="node"></span>
+            <span class="question-text">Are there any side effects?</span>
+        </li>
+        <li class="timeline-item">
+            <span class="node"></span>
+            <span class="question-text">Do you treat sports injuries?</span>
+        </li>
+        <li class="timeline-item">
+            <span class="node"></span>
+            <span class="question-text">How long does a session take?</span>
+        </li>
+    </ol>
+</div>
+
+    </section>
         
     </div>
     <div class="section footer">
@@ -2153,6 +2349,86 @@
       });
     })();
 
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    // --- Element Selections ---
+    const slides = document.querySelectorAll('.questions-slide');
+    const navItems = document.querySelectorAll('.timeline-item');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const playBtn = document.getElementById('play-btn');
+    const pauseBtn = document.getElementById('pause-btn');
+    
+    // --- State Variables ---
+    let currentIndex = 0;
+    let autoPlayInterval = null;
+
+    // --- Main Function to Update Slider ---
+    function goToSlide(index) {
+        // Remove active class from current slide and nav item
+        slides[currentIndex].classList.remove('active');
+        navItems[currentIndex].classList.remove('active');
+
+        // Update index
+        currentIndex = index;
+
+        // Add active class to new slide and nav item
+        slides[currentIndex].classList.add('active');
+        navItems[currentIndex].classList.add('active');
+
+        // Update button states
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.disabled = currentIndex === slides.length - 1;
+    }
+
+    // --- Event Listeners ---
+    prevBtn.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            goToSlide(currentIndex - 1);
+        }
+        stopAutoPlay(); // Stop autoplay on manual navigation
+    });
+
+    nextBtn.addEventListener('click', () => {
+        if (currentIndex < slides.length - 1) {
+            goToSlide(currentIndex + 1);
+        }
+        stopAutoPlay(); // Stop autoplay on manual navigation
+    });
+
+    navItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            goToSlide(index);
+            stopAutoPlay(); // Stop autoplay on manual navigation
+        });
+    });
+
+    // --- Autoplay Controls ---
+    function startAutoPlay() {
+        if (autoPlayInterval) return; // Already running
+        
+        autoPlayInterval = setInterval(() => {
+            let nextIndex = (currentIndex + 1) % slides.length;
+            goToSlide(nextIndex);
+        }, 2000); // Change slide every 4 seconds
+    }
+
+    function stopAutoPlay() {
+        if (autoPlayInterval) {
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = null;
+        }
+    }
+
+    playBtn.addEventListener('click', startAutoPlay);
+    pauseBtn.addEventListener('click', stopAutoPlay);
+
+    // --- Initialize ---
+    goToSlide(0); // Set initial state
+    // startAutoPlay(); // Uncomment to start autoplay on page load
+});
   </script>
 
 
