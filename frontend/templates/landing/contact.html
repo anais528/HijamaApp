@@ -70,7 +70,124 @@ Main Features:
     /* ========== RESPONSIVE ========== */
     @media(max-width:1024px){.contact-content{grid-template-columns:1fr;gap:30px;}}
     @media(max-width:768px){.header{justify-content:center;}.contact-info h1{text-align:center;}.contact-form{text-align:center;}}
+
+
   </style>
+
+<style>
+  .site-footer {
+position: relative;
+background: #212529;     /* solid background now */
+color: #cfd3d7;
+font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+width: 100%;
+}
+
+/* Removed arc block entirely */
+
+/* Content wrapper */
+.footer-inner {
+z-index: 2;
+padding: 130px 24px 28px; /* a bit more top padding for spacing */
+max-width: 1200px;
+margin: 0 auto;
+height: 400px;
+}
+
+/* Grid (no Bootstrap) */
+.footer-grid {
+display: grid;
+grid-template-columns: repeat(12, 1fr);
+gap: 30px;
+align-items: start;
+}
+
+/* 3 equal columns (span 4 each on desktop, full width on mobile) */
+.footer-column {
+grid-column: span 12;
+text-align: center;
+}
+@media (min-width: 768px) {
+.footer-column { grid-column: span 4; text-align: left; }
+}
+
+/* Lists and titles */
+.footer-list { list-style: none; margin: 0; padding: 0; display: inline-block; text-align: left; }
+.footer-title {
+font-size: 15px;
+font-weight: 700;
+color: #fff;
+text-transform: uppercase;
+position: relative;  
+top: -10px;             /* no offset needed now */
+}
+.footer-list li { margin: 6px 0; }
+.footer-list a {
+color: #6c757d;
+text-decoration: none;
+transition: color .25s ease;
+}
+.footer-list a:hover,
+.footer-list a:focus { color: #2c668e; }
+
+/* Static line inside lists (e.g., phone) */
+.footer-static { color: #9aa0a6; }
+.footer-list i { margin-right: 8px; color: #9aa0a6; }
+
+/* Divider row */
+.footer-divider {
+text-align: center;
+padding: 18px 0 8px;
+}
+.footer-divider .fa-ellipsis-h { color: #fff; }
+
+/* Bottom row: 3 items — left copy, center social, right links */
+.footer-bottom {
+display: grid;
+grid-template-columns: 1fr auto 1fr;
+align-items: center;
+gap: 16px;
+}
+.footer-copy { justify-self: start; color: #fff; font-size: 14px; }
+
+.quick-links { list-style: none; display: inline-flex; gap: 16px; margin: 0; padding: 0; }
+.quick-links a { color: #fff; text-decoration: none; transition: color .25s ease; }
+.quick-links a:hover { color: #2c668e; }
+.bottom-links { justify-self: end; }
+
+/* Social buttons */
+.social-buttons {
+list-style: none;
+display: inline-flex;
+gap: 10px;
+margin: 0;
+padding: 0;
+justify-self: center;
+}
+.social-buttons a {
+width: 40px; height: 40px; line-height: 40px;
+display: inline-flex; align-items: center; justify-content: center;
+color: #fff;
+border-radius: 50%;
+background-color: #1a1d20;
+transition: background-color .25s ease, transform .2s ease;
+}
+.social-buttons a:hover { background-color: #122a3a; transform: translateY(-2px); }
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+.footer-inner { padding-top: 28px; } /* no extra top spacing needed on mobile */
+.footer-bottom {
+  grid-template-columns: 1fr;
+  row-gap: 10px;
+  text-align: center;
+}
+.footer-copy { justify-self: center; }
+.bottom-links { justify-self: center; }
+}
+
+.quick-links { font-size: 13px; }
+</style>
 </head>
 
 <body>
@@ -142,29 +259,63 @@ Main Features:
     </section>
 
     <!-- FOOTER -->
-    <footer class="section footer fade-slide">
-      <div class="footer-grid">
-        <div class="footer-section">
-          <h4>Quick Links</h4>
-          <a href="/">Home</a>
-          <a href="/services">Services</a>
-          <a href="/booking">Book Appointment</a>
-          <a href="/contact">Contact</a>
+
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div class="footer-column">
+            <ul class="footer-list">
+              <li class="footer-title">Services</li>
+              <li><a href="/">Home</a></li>
+              <li><a href="/benefits">Benefits</a></li>
+              <li><a href="/services">Plans & Prices</a></li>
+              <li><a href="/faq">Frequently asked questions</a></li>
+            </ul>
+          </div>
+    
+          <div class="footer-column">
+            <ul class="footer-list">
+              <li class="footer-title">Company</li>
+              <li><a href="#">About us</a></li>
+              <li><a href="/booking">Book Appointment</a></li>
+              <li><a href="/contact">Contact Us</a></li>
+            </ul>
+          </div>
+    
+          <div class="footer-column">
+            <ul class="footer-list">
+              <li class="footer-title">Contact & Support</li>
+              <li class="footer-static"><i class="fas fa-phone"></i> +44 1234 567891</li>
+              <li><a href="mailto:info@coventryhijama.co.uk"><i class="fas fa-envelope"></i> info@coventryhijama.co.uk</a></li>
+              <li><a href="#"><i class="fas fa-star"></i> Coventry, United Kingdom</a></li>
+            </ul>
+          </div>
         </div>
-        <div class="footer-section">
-          <h4>Contact</h4>
-          <p>📍 Coventry, United Kingdom</p>
-          <p>📞 +44 1234 567890</p>
-          <p>✉️ info@coventryhijama.co.uk</p>
+    
+        <div class="footer-divider">
+          <i class="fas fa-ellipsis-h"></i>
         </div>
-        <div class="footer-section">
-          <h4>Follow Us</h4>
-          <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
-          <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
-          <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+    
+        <div class="footer-bottom">
+          <div class="footer-copy">
+            <span class="quick-links">Copyright © CoventryHijamaClinic
+              <script>document.write(new Date().getFullYear())</script>
+            </span>
+          </div>
+    
+          <ul class="social-buttons">
+            <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+          </ul>
+    
+          <ul class="quick-links bottom-links">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Use</a></li>
+          </ul>
         </div>
       </div>
-      <div class="footer-bottom">&copy; 2025 Coventry Hijama Clinic. All rights reserved.</div>
     </footer>
   </div>
 

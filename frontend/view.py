@@ -23,6 +23,11 @@ analytics_data = {
     'popular_services': []
 }
 
+@views.route('/batoulworkspace')
+def batoul():
+    return render_template('batoul.html')
+
+
 # ============================================
 # PUBLIC ROUTES
 # ============================================
