@@ -446,25 +446,19 @@
   transition: grid-template-columns var(--t) var(--ease);
   padding-bottom: 20px;
 }
+
 .cards-blank > .card{
   height: var(--h);
   background: var(--dark);
   border-radius: 999px;
   transition: background-color var(--t) var(--ease), border-radius var(--t) var(--ease);
   padding-bottom: 20px;
-
-
 }
 
 /* always-expanded visual for edges */
 .card.big{ 
   background: var(--grey); 
   border-radius: 50px; }
-
-  
-  .card.thin {
-  
-  }
 
 /* middle expansion (only hovered column grows; edges shrink slightly) */
 .cards-blank:has(.thin:nth-child(2):hover){
@@ -477,7 +471,7 @@
   grid-template-columns: var(--edge-shrink) var(--thin) var(--thin) var(--big) var(--edge-shrink);
 }
 .cards-blank:has(.thin:hover) .thin:hover{
-  background: var(--grey);
+  background-color: var(--grey);
   border-radius: 50px;
 }
 
@@ -578,7 +572,6 @@
 
 }
 
-
 /* default: edges are expanded, so show content and hide the standalone arrow */
 .card.big > .svc-card{ display: grid; }
 .card.big > .corner-ico{ display: none;   transform: rotate(45deg);
@@ -597,6 +590,7 @@
   transform: rotate(45deg);
   margin-top: 10px;
   margin-left: 30px;
+
 }
 
 .cards-blank .thin > .svc-card{ 
@@ -609,6 +603,40 @@
 
 .cards-blank .thin:hover > .corner-ico{ display: none; }
 
+#image-one {
+  background-image: url('static/images/people/on_table.png');
+  background-size: cover;     /* Ensures the image fills the card */
+  background-position: center;  /* Centers the image */
+  background-repeat: no-repeat; /* Prevents tiling */
+}
+
+#image-one .svc-card {
+  /* This is the semi-transparent color we added before */
+  background-color: var(--grey); 
+  backdrop-filter: blur(1px); 
+  height: 100%;
+  margin: 0px;
+  width: 400px;
+}
+
+#image-two {
+  background-image: url('static/images/people/athelte.png');
+  background-size: cover;     /* Ensures the image fills the card */
+  background-position: center;  /* Centers the image */
+  background-repeat: no-repeat; /* Prevents tiling */
+}
+
+#image-two .svc-card {
+  /* This is the semi-transparent color we added before */
+  color: white;
+}
+
+#image-two {
+  background-image: url('static/images/people/athelte.png');
+  background-size: cover;     /* Ensures the image fills the card */
+  background-position: center;  /* Centers the image */
+  background-repeat: no-repeat; /* Prevents tiling */
+}
 
 
 /* keep content visible if an edge itself is hovered */
@@ -626,11 +654,6 @@
 }
 
 
-
-
-#image-one {
-  background-image: url('image_one.png');
-}
 
 
 
@@ -899,7 +922,6 @@
     background: #ccc;
 }
 
-
     .faq-cta {
       text-align: center;
       margin-top: 80px;
@@ -932,6 +954,7 @@
       padding: 0;
       border: none;
     }
+
   </style>
 
 
@@ -2134,7 +2157,7 @@
       </div>
   
       <!-- Middle placeholders -->
-      <div class="card thin">
+      <div class="card thin" id="image-one">
 
         <span class="corner-ico" aria-hidden="true">
           <i class="fa-solid fa-angles-up" aria-hidden="true"></i>
@@ -2157,7 +2180,7 @@
       </article>
       </div>
 
-      <div class="card thin" id="image-one">
+      <div class="card thin" id="image-two">
 
         <span class="corner-ico" aria-hidden="true">
           <i class="fa-solid fa-angles-up" aria-hidden="true"></i>
@@ -2180,7 +2203,7 @@
 
       </div>
 
-      <div class="card thin">
+      <div class="card thin" id="image-three">
 
         <span class="corner-ico" aria-hidden="true">
           <i class="fa-solid fa-angles-up" aria-hidden="true"></i>
