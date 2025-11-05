@@ -287,10 +287,6 @@ def benefits():
     """Learn about Benefits of HIjama"""
     return render_template('landing/benefits.html')
 
-@views.route('/faq')
-def faq():
-    """FAQ page"""
-    return render_template('landing/faq.html')
 
 @views.route('/services')
 def services():
