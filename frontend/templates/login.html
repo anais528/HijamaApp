@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login & Signup Form</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    /* Reset and base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+
+      /* Using Inter as it was linked, but the original CSS specified Poppins */
+      font-family: 'Inter', sans-serif; 
+    }
+
+    body {
+        background: #F9F9FD;
+        padding-top: 30px;
+    }
+    /*----------------------  HEADER SECTION  ----------------------------*/
+    .header {
+      display: flex;
+      justify-content: space-between; /* spread out left, middle, right */
+      align-items: center;
+      padding: 20px 40px;
+      font-size: 14px;
+      width: 100%;
+      font-weight: 500;
+      border: none;
+      margin-top: -30px;
+      padding-top: 25px;
+      padding-bottom: 10px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo_image {
+      width: auto;
+      height: 130px;
+      padding-left: 0px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      margin-left: 450px;
+    }
+
+    .contact_us {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 1px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #000;
+      width: 180px;
+    }
+
+    .nav a:hover {
+      font-weight: 600;
+    }
+
+    .login-button {
+      font-size: 30px;
+    }
+
+    /*----------------------  LOGIN FORM SECTION  ----------------------------*/
+    .container {
+      /* MODIFICATION: 
+      Removed 'height: 100vh;' 
+      Added 'padding' to allow the form to sit below the header.
+      */
+      padding-top: 370px;
+      padding-bottom: 50px;
+      
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      column-gap: 30px;
+    }
+
+    .form {
+      position: absolute;
+      max-width: 430px;
+      width: 100%;
+      padding: 30px;
+      border-radius: 6px;
+      background: #FFF;
+      /* Added box-shadow for better visibility on a white background */
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+    }
+
+    /* Form toggling */
+    .form.signup {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .forms.show-signup .form.signup {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .forms.show-signup .form.login {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    header {
+      font-size: 28px;
+      font-weight: 600;
+      color: #232836;
+      text-align: center;
+    }
+    
+    /* Disambiguation: Renaming header-specific 'header' to avoid conflict */
+    .form-content header {
+      font-size: 28px;
+      font-weight: 600;
+      color: #232836;
+      text-align: center;
+    }
+
+
+    form {
+      margin-top: 30px;
+    }
+
+    .form .field {
+      position: relative;
+      height: 50px;
+      width: 100%;
+      margin-top: 20px;
+      border-radius: 6px;
+    }
+
+    .field input,
+    .field button {
+      height: 100%;
+      width: 100%;
+      border: none;
+      font-size: 16px;
+      font-weight: 400;
+      border-radius: 6px;
+    }
+
+    .field input {
+      outline: none;
+      padding: 0 15px;
+      border: 1px solid #CACACA;
+    }
+
+    .field input:focus {
+      border-bottom-width: 2px;
+    }
+
+    .eye-icon {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      font-size: 18px;
+      color: #8b8b8b;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    .field button {
+      color: #fff;
+      background-color: #0171d3;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .field button:hover {
+      background-color: #016dcb;
+    }
+
+    .form-link {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .form-link span,
+    .form-link a {
+      font-size: 14px;
+      font-weight: 400;
+      color: #232836;
+    }
+
+    .form a {
+      color: #0171d3;
+      text-decoration: none;
+    }
+
+    .form-content a:hover {
+      text-decoration: underline;
+    }
+
+    .line {
+      position: relative;
+      height: 1px;
+      width: 100%;
+      margin: 36px 0;
+      background-color: #d4d4d4;
+    }
+
+    .line::before {
+      content: 'Or';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #FFF;
+      color: #8b8b8b;
+      padding: 0 15px;
+    }
+
+    .media-options a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    a.facebook {
+      color: #fff;
+      background-color: #4267b2;
+    }
+
+    a.facebook .facebook-icon {
+      height: 28px;
+      width: 28px;
+      color: #0171d3;
+      font-size: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #fff;
+    }
+
+    .facebook-icon,
+    img.google-img {
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      transform: translateY(-50%);
+    }
+
+    img.google-img {
+      height: 20px;
+      width: 20px;
+      object-fit: cover;
+    }
+
+    a.google {
+      border: 1px solid #CACACA;
+    }
+
+    a.google span {
+      font-weight: 500;
+      opacity: 0.6;
+      color: #232836;
+    }
+
+    /* Responsive */
+    @media screen and (max-width: 400px) {
+      .form {
+        padding: 20px 10px;
+      }
+      /* Added responsive rules for header */
+      .header {
+        padding: 10px 20px;
+      }
+      .nav {
+        display: none; /* Example: hide complex nav on mobile */
+      }
+    }
+  </style>
+
+</head>
+<body>
+
+  <header class="section header">
+    <div class="logo">
+        <img class="logo_image" src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+    </div>
+  
+
+  
+    <nav class="nav">
+        <a href="{{ url_for('views.services') }}">Services</a>  
+        <a href="{{ url_for('views.benefits') }}">Benefits</a>
+        <a href="{{ url_for('views.contact') }}"><span class="contact_us">Contact us</span></a>
+        <a class="login-button" href="{{ url_for('views.admin_login') }}">
+          <i class="fa-solid fa-user-circle" ></i>
+        </a>
+      </nav>
+  </header>
+
+  <section class="container forms">
+    
+    <div class="form login">
+      <div class="form-content">
+        <header>Login</header>
+        <form action="#">
+          <div class="field input-field">
+            <input type="email" placeholder="Email" class="input">
+          </div>
+
+          <div class="field input-field">
+            <input type="password" placeholder="Password" class="password">
+            <i class='bx bx-hide eye-icon'></i>
+          </div>
+
+          <div class="form-link">
+            <a href="#" class="forgot-pass">Forgot password?</a>
+          </div>
+
+          <div class="field button-field">
+            <button>Login</button>
+          </div>
+        </form>
+
+        <div class="form-link">
+          <span>Don't have an account? <a href="#" class="link signup-link">Signup</a></span>
+        </div>
+      </div>
+
+      <div class="line"></div>
+
+      <div class="media-options">
+        <a href="#" class="field facebook">
+          <i class='bx bxl-facebook facebook-icon'></i>
+          <span>Login with Facebook</span>
+        </a>
+      </div>
+
+      <div class="media-options">
+        <a href="#" class="field google">
+          <img src="images/google.png" alt="" class="google-img">
+          <span>Login with Google</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="form signup">
+      <div class="form-content">
+        <header>Signup</header>
+        <form action="#">
+          <div class="field input-field">
+            <input type="email" placeholder="Email" class="input">
+          </div>
+
+          <div class="field input-field">
+            <input type="password" placeholder="Create password" class="password">
+          </div>
+
+          <div class="field input-field">
+            <input type="password" placeholder="Confirm password" class="password">
+            <i class='bx bx-hide eye-icon'></i>
+          </div>
+
+          <div class="field button-field">
+            <button>Signup</button>
+          </div>
+        </form>
+
+        <div class="form-link">
+          <span>Already have an account? <a href="#" class="link login-link">Login</a></span>
+        </div>
+      </div>
+
+      <div class="line"></div>
+
+      <div class="media-options">
+        <a href="#" class="field facebook">
+          <i class='bx bxl-facebook facebook-icon'></i>
+          <span>Login with Facebook</span>
+        </a>
+      </div>
+
+      <div class="media-options">
+        <a href="#" class="field google">
+          <img src="images/google.png" alt="Google" class="google-img">
+          <span>Login with Google</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const forms = document.querySelector(".forms"),
+      pwShowHide = document.querySelectorAll(".eye-icon"),
+      links = document.querySelectorAll(".link");
+
+    // Add click event listener to each eye icon for toggling password visibility
+    pwShowHide.forEach(eyeIcon => {
+      eyeIcon.addEventListener("click", () => {
+        let pwFields = eyeIcon.parentElement.parentElement.querySelectorAll(".password");
+        
+        pwFields.forEach(password => {
+          if (password.type === "password") { // If password is hidden
+            password.type = "text"; // Show password
+            eyeIcon.classList.replace("bx-hide", "bx-show"); // Change icon to show state
+            return;
+          }
+          password.type = "password"; // Hide password
+          eyeIcon.classList.replace("bx-show", "bx-hide"); // Change icon to hide state
+        });
+      });
+    });
+
+    // Add click event listener to each link to toggle between forms
+    links.forEach(link => {
+      link.addEventListener("click", e => {
+        e.preventDefault(); // Prevent default link behavior
+        forms.classList.toggle("show-signup");
+      });
+    });
+  </script>
+
+</body>
+</html>

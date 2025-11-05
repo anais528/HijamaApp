@@ -28,6 +28,12 @@ def batoul():
     return render_template('batoul.html')
 
 
+@views.route('/login')
+def admin_login():
+    """Admin login page"""
+    return render_template('login.html')
+
+
 # ============================================
 # PUBLIC ROUTES
 # ============================================
@@ -296,14 +302,14 @@ def service_details():
     """Alternative route for service details"""
     return render_template('landing/service_details.html')
 
+
+
+
 # ============================================
 # ADMIN ROUTES
 # ============================================
 
-@views.route('/admin/login')
-def admin_login():
-    """Admin login page"""
-    return render_template('admin/admin_login.html')
+
 
 
 @views.route('/admin/bookings')

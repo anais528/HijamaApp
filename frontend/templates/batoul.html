@@ -49,19 +49,20 @@
         }
 
     /*----------------------  HEADER SECTION  ----------------------------*/
-        .header {
-        display: flex;
-        justify-content: space-between; /* spread out left, middle, right */
-        align-items: center;
-        padding: 20px 40px;
-        font-size: 14px;
-        width: 100%;
-        font-weight: 500;
-        border: none;
-        margin-top: -30px;
-        padding-top: 25px;
-        padding-bottom: 10px;
-        }
+    .nav-header {
+      display: flex;
+      justify-content: space-between; /* spread out left, middle, right */
+      align-items: center;
+      padding: 20px 40px;
+      font-size: 14px;
+      width: 100%;
+      font-weight: 500;
+      border: none;
+      margin-top: -30px;
+      padding-top: 25px;
+      padding-bottom: 10px;
+    }
+
 
         .logo {
             display: flex;
@@ -74,27 +75,10 @@
             padding-left: 0px;
         }
 
-        .services {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding-left: 80px;
-        }
-
-        .menu-icon {
-            display: flex;
-            align-items: center;
-        }
-
-        .hamburger {
-            width: auto;
-            height: 40px;
-        }
-
         .nav {
             display: flex;
             align-items: center;
-            margin-left: 750px;
+            margin-left: 600px;
         }
 
         .contact_us { 
@@ -106,7 +90,7 @@
         .nav a {
             text-decoration: none;
             color: #000;   
-            width: 90px;
+            width: 180px;
         }
 
         .nav a:hover {
@@ -136,7 +120,7 @@
 
         .landing-photos {
           margin-top: -30px;
-          margin-right: 80px;
+          margin-right: 100px;
 
         }
 
@@ -1671,27 +1655,22 @@
 
     
     
-    <header class="section header">
+    <header class="section nav-header">
         <div class="logo">
             <img class="logo_image" src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
         </div>
       
-        <div class="services">
-          <a class="menu-icon" href="#">
-            <img class="hamburger" src="{{ url_for('static', filename='images/hamburger.png') }}" alt="Menu">
-          </a>
-          <span class="services-icon">Services</span>
-        </div>
-      
+ 
         <nav class="nav">
-          <a href="#">Pricing</a>
-          <a href="#">Benefits</a>
-          <a href="#"><span class="contact_us">Contact us</span></a>
-          <a class="login" href="#">
-            <i class="fa fa-user-circle" ></i>
+          <a href="{{ url_for('views.services') }}">Services</a>  
+          <a href="{{ url_for('views.benefits') }}">Benefits</a>
+          <a href="{{ url_for('views.contact') }}"><span class="contact_us">Contact us</span></a>
+          <a class="login" href="{{ url_for('views.admin_login') }}">
+            <i class="fa-solid fa-user-circle" ></i>
           </a>
           
         </nav>
+        
       </header>
 
 
