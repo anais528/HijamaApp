@@ -23,11 +23,6 @@ analytics_data = {
     'popular_services': []
 }
 
-@views.route('/batoulworkspace')
-def batoul():
-    return render_template('batoul.html')
-
-
 @views.route('/login')
 def admin_login():
     """Admin login page"""
@@ -41,7 +36,7 @@ def admin_login():
 @views.route('/')
 def home():
     """Main homepage - renders landing page"""
-    return render_template('landing/landingpage.html')
+    return render_template('batoul.html')
 
 
 @views.route('/api/available-slots', methods=['GET'])
