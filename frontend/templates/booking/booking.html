@@ -224,45 +224,7 @@
       border-radius: 10px;
     }
 
-    /* ========== FOOTER ========== */
-    .footer {
-      background: #111;
-      color: #eee;
-      padding: 60px 20px;
-      text-align: center;
-      border-radius: 30px 30px 0 0;
-    }
 
-    .footer-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 40px;
-      margin-bottom: 40px;
-    }
-
-    .footer-section h4 {
-      font-weight: 600;
-      margin-bottom: 15px;
-    }
-
-    .footer-section a {
-      display: block;
-      color: #bbb;
-      margin-bottom: 8px;
-      transition: 0.3s;
-    }
-
-    .footer-section a:hover {
-      color: #fff;
-    }
-
-    .footer-bottom {
-      font-size: 0.9rem;
-      color: #aaa;
-      border-top: 1px solid #333;
-      padding-top: 20px;
-    }
 
     /* ========== WHATSAPP BUTTON ========== */
     .whatsapp-float {
@@ -382,38 +344,10 @@
       <!-- Calendly inline widget end -->
     </section>
 
-    <!-- FOOTER -->
-    <footer class="section footer fade-slide">
-      <div class="footer-grid">
-        <div class="footer-section">
-          <h4>Quick Links</h4>
-          <a href="/">Home</a>
-          <a href="/services">Services</a>
-          <a href="/booking">Book Appointment</a>
-          <a href="/contact">Contact</a>
-        </div>
-
-        <div class="footer-section">
-          <h4>Contact</h4>
-          <p>📍 Coventry, United Kingdom</p>
-          <p>📞 +44 1234 567890</p>
-          <p>✉️ info@coventryhijama.co.uk</p>
-        </div>
-
-        <div class="footer-section">
-          <h4>Follow Us</h4>
-          <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
-          <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
-          <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        &copy; 2025 Coventry Hijama Clinic. All rights reserved.
-      </div>
-    </footer>
   </div>
 
+
+  {% include 'partials/footer.html' %}
   <!-- WHATSAPP FLOATING BUTTON -->
   <a href="https://wa.me/447917781447?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment" target="_blank" class="whatsapp-float" aria-label="Contact us on WhatsApp">
     <i class="fab fa-whatsapp"></i>

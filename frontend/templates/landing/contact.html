@@ -60,13 +60,7 @@ Main Features:
     /* ========== STICKY WHATSAPP BUTTON ========== */
     .whatsapp-button{position:fixed;bottom:20px;right:20px;width:60px;height:60px;background:#25D366;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 4px 12px rgba(0,0,0,0.3);cursor:pointer;z-index:1000;transition:transform 0.2s;}
     .whatsapp-button:hover{transform:scale(1.1);}
-    /* ========== FOOTER ========== */
-    .footer{background:#111;color:#eee;padding:60px 20px;text-align:center;}
-    .footer-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:40px;margin-bottom:40px;}
-    .footer-section h4{font-weight:600;margin-bottom:15px;}
-    .footer-section a{display:block;color:#bbb;margin-bottom:8px;transition:0.3s;}
-    .footer-section a:hover{color:#fff;}
-    .footer-bottom{font-size:0.9rem;color:#aaa;border-top:1px solid #333;padding-top:20px;}
+
     /* ========== RESPONSIVE ========== */
     @media(max-width:1024px){.contact-content{grid-template-columns:1fr;gap:30px;}}
     @media(max-width:768px){.header{justify-content:center;}.contact-info h1{text-align:center;}.contact-form{text-align:center;}}
@@ -320,63 +314,9 @@ transition: background-color .25s ease, transform .2s ease;
     <!-- FOOTER -->
 
 
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <div class="footer-grid">
-          <div class="footer-column">
-            <ul class="footer-list">
-              <li class="footer-title">Services</li>
-              <li><a href="/">Home</a></li>
-              <li><a href="/benefits">Benefits</a></li>
-              <li><a href="/services">Plans & Prices</a></li>
-              <li><a href="/faq">Frequently asked questions</a></li>
-            </ul>
-          </div>
-    
-          <div class="footer-column">
-            <ul class="footer-list">
-              <li class="footer-title">Company</li>
-              <li><a href="#">About us</a></li>
-              <li><a href="/booking">Book Appointment</a></li>
-              <li><a href="/contact">Contact Us</a></li>
-            </ul>
-          </div>
-    
-          <div class="footer-column">
-            <ul class="footer-list">
-              <li class="footer-title">Contact & Support</li>
-              <li class="footer-static"><i class="fas fa-phone"></i> +44 1234 567891</li>
-              <li><a href="mailto:info@coventryhijama.co.uk"><i class="fas fa-envelope"></i> info@coventryhijama.co.uk</a></li>
-              <li><a href="#"><i class="fas fa-star"></i> Coventry, United Kingdom</a></li>
-            </ul>
-          </div>
-        </div>
-    
-        <div class="footer-divider">
-          <i class="fas fa-ellipsis-h"></i>
-        </div>
-    
-        <div class="footer-bottom">
-          <div class="footer-copy">
-            <span class="quick-links">Copyright © CoventryHijamaClinic
-              <script>document.write(new Date().getFullYear())</script>
-            </span>
-          </div>
-    
-          <ul class="social-buttons">
-            <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-            <li><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
-          </ul>
-    
-          <ul class="quick-links bottom-links">
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms of Use</a></li>
-          </ul>
-        </div>
-      </div>
-    </footer>
   </div>
+
+  {% include 'partials/footer.html' %}
 
   <!-- STICKY WHATSAPP BUTTON -->
   <a href="https://wa.me/447917781447" target="_blank" class="whatsapp-button"><i class="fab fa-whatsapp"></i></a>

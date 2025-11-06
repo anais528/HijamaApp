@@ -437,44 +437,7 @@
     }
 
     /* ========== FOOTER ========== */
-    .footer {
-      background: #111;
-      color: #eee;
-      padding: 60px 20px;
-      text-align: center;
-      border-radius: 30px 30px 0 0;
-    }
 
-    .footer-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 40px;
-      margin-bottom: 40px;
-    }
-
-    .footer-section h4 {
-      font-weight: 600;
-      margin-bottom: 15px;
-    }
-
-    .footer-section a {
-      display: block;
-      color: #bbb;
-      margin-bottom: 8px;
-      transition: 0.3s;
-    }
-
-    .footer-section a:hover {
-      color: #fff;
-    }
-
-    .footer-bottom {
-      font-size: 0.9rem;
-      color: #aaa;
-      border-top: 1px solid #333;
-      padding-top: 20px;
-    }
 
     /* ========== WHATSAPP BUTTON ========== */
     .whatsapp-float {
@@ -819,13 +782,16 @@
     </section>
 
     <!-- FOOTER -->
-    {% include 'partials/footer.html' %}
+
   </div>
+
 
   <!-- WHATSAPP FLOATING BUTTON -->
   <a href="https://wa.me/447123456789?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment" target="_blank" class="whatsapp-float" aria-label="Contact us on WhatsApp">
     <i class="fab fa-whatsapp"></i>
   </a>
+
+  {% include 'partials/footer.html' %}
 
   <!-- Scroll Fade Animation Script -->
   <script>
