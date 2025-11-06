@@ -13,9 +13,147 @@ Main Features:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Appointment Confirmation</title>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F9F9FD;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+
+            /* This centers the card on the page */
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+        }
+
+        .card {
+            overflow: hidden;
+            position: relative;
+            background-color: #ffffff;
+            text-align: left;
+            border-radius: 0.5rem;
+            max-width: 290px;
+            box-shadow:
+                0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .header {
+            padding: 1.25rem 1rem 1rem 1rem;
+            background-color: #ffffff;
+        }
+
+        .image {
+            display: flex;
+            margin-left: auto;
+            margin-right: auto;
+            /* Changed to light green */
+            background-color: #d1fae5; 
+            flex-shrink: 0;
+            justify-content: center;
+            align-items: center;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 9999px;
+        }
+
+        .image svg {
+            /* Changed to dark green */
+            color: #059669; 
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        .content {
+            margin-top: 0.75rem;
+            text-align: center;
+        }
+
+        .title {
+            color: #111827;
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.5rem;
+        }
+
+        .message {
+            margin-top: 0.5rem;
+            color: #6b7280;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+        }
+
+        .actions {
+            margin: 0.75rem 1rem;
+            /* Removed background-color to simplify */
+        }
+
+        /* Renamed from .desactivate */
+        .primary {
+            display: inline-flex;
+            padding: 0.5rem 1rem;
+            /* Changed to dark green */
+            background-color: #059669; 
+            color: #ffffff;
+            font-size: 1rem;
+            line-height: 1.5rem;
+            font-weight: 500;
+            justify-content: center;
+            width: 100%;
+            border-radius: 0.375rem;
+            border-width: 1px;
+            border-color: transparent;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Removed the .cancel button style */
+
+        button {
+            cursor: pointer;
+        }
+
+        a {
+          text-decoration: none;
+        }
+
+    </style>
 </head>
 <body>
-    Booking Confirmation
+    <div class="card">
+        <div class="header">
+            <div class="image">
+                <svg 
+                    aria-hidden="true" 
+                    stroke="currentColor" 
+                    stroke-width="2" 
+                    viewBox="0 0 24 24" 
+                    fill="none"
+                >
+                    <path 
+                        d="M4.5 12.75l6 6 9-13.5" 
+                        stroke-linejoin="round" 
+                        stroke-linecap="round"
+                    ></path>
+                </svg>
+            </div>
+            <div class="content">
+                <span class="title">Appointment Confirmed!</span>
+                <p class="message">
+                    Your appointment has been successfully booked. We've sent a 
+                    confirmation and all the details to your email.
+                </p>
+            </div>
+            <div class="actions">
+              <div class="actions">
+                <a href="{{ url_for('views.home') }}" class="primary">Back to Home</a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
