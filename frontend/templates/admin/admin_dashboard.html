@@ -57,28 +57,57 @@ Main Features:
         
     }
 
-    .header {
-      grid-row: 1 / 2;
-      grid-column: 1 / 3;
-      background: #ddd;
-      border-radius: 6px;
+
+    .nav-header {
       display: flex;
+      justify-content: space-between; /* spread out left, middle, right */
       align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      font-size: 1.2rem;
-      letter-spacing: 1px;
+      padding: 20px 40px;
+      font-size: 14px;
+      width: 100%;
+      font-weight: 500;
+      border: none;
+      padding-top: 15px;
     }
-    .sidebar {
-      grid-row: 2 / 3;
-      grid-column: 1 / 2;
-      background: #ddd;
-      border-radius: 6px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      overflow: hidden;
-    }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo_image {
+            width: auto;
+            height: 130px;
+            padding-left: 0px;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            margin-left: 680px;
+
+        }
+
+        .contact_us { 
+            text-decoration: underline;
+            text-underline-offset: 4px;    
+            text-decoration-thickness: 1px;  
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #000;   
+            width: 180px;
+        }
+
+        .nav a:hover {
+            font-weight: 600;   
+        }
+
+        .login {
+            font-size: 30px;
+        }
+
     .main {
       grid-row: 2 / 3;
       grid-column: 2 / 3;
@@ -138,103 +167,74 @@ Main Features:
     100% { transform: translateX(100%); }
   }
 
+  .logout-link {
+    display: inline-flex;  /* Treats the link as a flexible container */
+    align-items: center; /* Vertically centers the icon and text */
+    gap: 0.5rem;         /* Adds a nice space between the icon and text */
+    
+    /* Optional: Style it to look like a link */
+    text-decoration: none;
+    color: #dc2626; /* A red color, common for logout/danger */
+    font-weight: 500;
+}
+
+/* Controls the size of the icon */
+.logout-link svg {
+    width: 1.25rem;  /* 20px */
+    height: 1.25rem; /* 20px */
+}
+
+/* Optional: Add a hover effect */
+.logout-link:hover {
+    text-decoration: underline;
+}
+
 
   </style>
 </head>
 <body>
+  <header class="nav-header">
+    <div class="logo">
+        <img class="logo_image" src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+    </div>
+  
+  
+    <nav class="nav">
+      <a href="{{ url_for('views.home') }}">Home</a>  
+      <a href="{{ url_for('views.home') }}" class="logout-link">
+        <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            viewBox="0 0 20 20" 
+            fill="currentColor"
+        >
+            <path 
+                fill-rule="evenodd" 
+                d="M3 3.25A2.25 2.25 0 015.25 1h9.5A2.25 2.25 0 0117 3.25V6.75h-1.5V3.25a.75.75 0 00-.75-.75h-9.5a.75.75 0 00-.75.75v13.5a.75.75 0 00.75.75h9.5a.75.75 0 00.75-.75v-3.5H17v3.5A2.25 2.25 0 0114.75 19h-9.5A2.25 2.25 0 013 16.75V3.25z" 
+                clip-rule="evenodd" 
+            />
+            <path 
+                fill-rule="evenodd" 
+                d="M6.75 9a.75.75 0 000 1.5h6.58l-3.22 3.22a.75.75 0 101.06 1.06l4.5-4.5a.75.75 0 000-1.06l-4.5-4.5a.75.75 0 10-1.06 1.06l3.22 3.22H6.75z" 
+                clip-rule="evenodd" 
+            />
+        </svg>
+        <span>Logout</span>
+    </a>  
+    </nav>
+    
+  </header>
+
+      <span 
+      class="text-gray-700 text-3xl font-semibold" 
+      style="position: relative; left: 80px; padding-top: 200px;"
+    >
+      Revenue and Customer Analytics
+    </span>
+
     <div class="grid grid-rows-[70px,1fr] grid-cols-[60px,1fr] h-screen w-full gap-4">
 
-    <div class="header">Header</div>
-    
-    <div class="sidebar flex flex-col items-center w-26 h-full overflow-hidden text-gray-700 bg-gray-100 rounded">
-      <!-- Logo Icon -->
-      <a class="flex items-center justify-center mt-3" href="#">
-        <svg
-          class="w-8 h-8 fill-current"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z"
-          />
-        </svg>
-      </a>
+  
 
-      <div class="flex flex-col items-center mt-3 border-t border-gray-300">
-        <!-- Home Icon -->
-        <a
-          class="flex items-center justify-center w-12 h-12 mt-2 rounded hover:bg-gray-300"
-          href="#"
-        >
-          <svg
-            class="w-6 h-6 stroke-current"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-            />
-          </svg>
-        </a>
-
-        <!-- Reports Icon (Active) -->
-        <a
-          class="flex items-center justify-center w-12 h-12 mt-2 bg-gray-300 rounded"
-          href="#"
-        >
-          <svg
-            class="w-6 h-6 stroke-current"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-            />
-          </svg>
-        </a>
-      </div>
-      <div
-        class="flex flex-col items-center mt-2 border-t border-gray-300"
-        style="flex-grow: 1; justify-content: start;"
-      >
-        <!-- Empty placeholders to keep spacing -->
-        <div class="w-12 h-12 mt-2"></div>
-        <div class="w-12 h-12 mt-2"></div>
-        <div class="w-12 h-12 mt-2"></div>
-      </div>
-      <!-- Profile Icon -->
-      <a
-        class="flex items-center justify-center w-16 h-16 mt-auto bg-gray-200 hover:bg-gray-300"
-        href="#"
-      >
-        <svg
-          class="w-6 h-6 stroke-current"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
-      </a>
-    </div>
-    
     <div class="main">
 
       <!-- Top analytics row -->
@@ -242,9 +242,9 @@ Main Features:
 <!-- Analytics Section Layout Matching Provided Image -->
 
 
-
-
 <div class="grid grid-cols-4 grid-rows-2 gap-6 h-[400px] w-full pr-5 pl-20 pb-12 ">
+
+
 
     <div class="grid grid-cols-2 gap-4">
           <div class="bg-white rounded-2xl border border-gray-200 p-7 py-5">
@@ -455,15 +455,10 @@ Main Features:
     </div>
       
       
-      
-      
-      
-      
-      
       <div class="large-log-table">
         <div class="table-wrapper flex-1 bg-gray-300 rounded overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-              <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <thead class="text-s text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                   <th scope="col" class="px-6 py-3">Booking ID</th>
                   <th scope="col" class="px-6 py-3">Client Name</th>
@@ -478,7 +473,7 @@ Main Features:
                   <th scope="col" class="px-6 py-3">Notes</th>
                 </tr>
               </thead>
-              <tbody id="appt-tbody" class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
+              <tbody id="appt-tbody" class="bg-white divide-y divide-gray-200 dark:bg-gray-300 dark:divide-gray-300">
                 <!-- data loaded here dynamically -->
 
                 <tr id="appt-skeleton">
@@ -769,19 +764,19 @@ async function fetchAppointments() {
     const frag = document.createDocumentFragment();
     data.forEach(appt => {
       const tr = document.createElement('tr');
-      tr.className = 'odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200';
+      tr.className = 'bg-white dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200';
       tr.innerHTML = `
         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">#${String(appt.id ?? '').padStart(4, '0')}</td>
         <td class="px-6 py-4 text-gray-900 dark:text-white whitespace-nowrap">${appt.client_name ?? ''}</td>
-        <td class="px-6 py-4 text-gray-500 dark:text-gray-400">${appt.contact_info ?? ''}</td>
-        <td class="px-6 py-4 text-gray-500 dark:text-gray-400">${appt.client_gender ?? ''}</td>
-        <td class="px-6 py-4 text-gray-500 dark:text-gray-400">${appt.staff_name ?? ''}</td>
-        <td class="px-6 py-4 text-gray-500 dark:text-gray-400">${appt.staff_gender ?? ''}</td>
-        <td class="px-6 py-4 text-gray-500 dark:text-gray-400">${appt.appointment_time ? new Date(appt.appointment_time).toLocaleString() : ''}</td>
-        <td class="px-6 py-4 text-gray-500 dark:text-gray-400">${appt.end_time ? new Date(appt.end_time).toLocaleString() : ''}</td>
-        <td class="px-6 py-4 text-gray-500 dark:text-gray-400">${appt.status ?? ''}</td>
-        <td class="px-6 py-4 text-gray-500 dark:text-gray-400">£${Number(appt.payment ?? 0).toFixed(2)}</td>
-        <td class="px-6 py-4 text-gray-500 dark:text-gray-400">${appt.notes ?? ''}</td>
+        <td class="px-6 py-4 font-light text-gray-500 dark:text-gray-400">${appt.contact_info ?? ''}</td>
+        <td class="px-6 py-4 font-light text-gray-500 dark:text-gray-400">${appt.client_gender ?? ''}</td>
+        <td class="px-6 py-4 font-light text-gray-500 dark:text-gray-400">${appt.staff_name ?? ''}</td>
+        <td class="px-6 py-4 font-light text-gray-500 dark:text-gray-400">${appt.staff_gender ?? ''}</td>
+        <td class="px-6 py-4 font-light text-gray-500 dark:text-gray-400">${appt.appointment_time ? new Date(appt.appointment_time).toLocaleString() : ''}</td>
+        <td class="px-6 py-4 font-light text-gray-500 dark:text-gray-400">${appt.end_time ? new Date(appt.end_time).toLocaleString() : ''}</td>
+        <td class="px-6 py-4 font-light text-gray-500 dark:text-gray-400">${appt.status ?? ''}</td>
+        <td class="px-6 py-4 font-light text-gray-500 dark:text-gray-400">£${Number(appt.payment ?? 0).toFixed(2)}</td>
+        <td class="px-6 py-4 font-light text-gray-500 dark:text-gray-400">${appt.notes ?? ''}</td>
       `;
       frag.appendChild(tr);
     });
@@ -800,7 +795,7 @@ async function fetchAppointments() {
 
 // init + poll (safe)
 document.addEventListener('DOMContentLoaded', fetchAppointments);
-const apptPoll = setInterval(fetchAppointments, 10000);
+const apptPoll = setInterval(fetchAppointments, 100000);
 
   </script>
   
